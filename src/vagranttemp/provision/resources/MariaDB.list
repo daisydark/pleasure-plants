@@ -1,0 +1,4 @@
+# MariaDB 10.2 repository list - created 2018-04-18 12:40 UTC
+# http://downloads.mariadb.org/mariadb/repositories/
+deb [arch=amd64,i386] http://mirror.23media.de/mariadb/repo/10.2/ubuntu xenial main
+deb-src http://mirror.23media.de/mariadb/repo/10.2/ubuntu xenial main
