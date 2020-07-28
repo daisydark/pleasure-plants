@@ -1,5 +1,0 @@
-[mysqld]
-key_buffer = 768M 
-innodb_buffer_pool_size = 3G
-innodb_log_file_size = 128M
-tmpdir = /dev/shm
