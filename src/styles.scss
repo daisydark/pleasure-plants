@@ -1,9 +1,5 @@
-body {
-  background-color:#000f00 !important;
-  color:#fff !important;
-  min-height: 600px;
-  font-size:16px;
-}
+@import "scss/myTheme";
+@import "~bootstrap/scss/bootstrap";
 
 .container {
   margin-top:5px;
@@ -22,6 +18,6 @@ body {
 }
 
 .fa-games-help {
-  font-size:20px;
+  font-size:20px !important;
   margin-top:10px;
 }
