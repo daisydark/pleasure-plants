@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color:#000f00 !important;
+  color:#fff !important;
+  min-height: 600px;
+  font-size:16px;
+}
+
+.container {
+  margin-top:5px;
+}
+
+.red {
+  color:red !important;
+}
+
+.blue {
+  color:blue;
+}
+
+.yellow {
+  color:yellow;
+}
+
+.fa-games-help {
+  font-size:20px;
+  margin-top:10px;
+}

@@ -3,16 +3,51 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { CookieService } from "ngx-cookie-service";
+import { ReactiveFormsModule } from "@angular/forms";
+
+import { PlantsComponent } from './components/content/plants/plants.component';
+import { PlantComponent } from './components/plant/plant.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { BreedingComponent } from './components/interactive/breeding/breeding.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { YahtzeeComponent } from './components/games/yahtzee/yahtzee.component';
+import { GamesComponent } from './components/content/games/games.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlantsComponent,
+    PlantComponent,
+    HeaderComponent,
+    FooterComponent,
+    BreedingComponent,
+    YahtzeeComponent,
+    GamesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

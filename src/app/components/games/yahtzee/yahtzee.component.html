@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>{{'YahtzeeTitle' | translate}}
+    <fa-icon class="fa-pull-right fa-games-help" [icon]="faQuestionCircle"></fa-icon>
+  </h1>
+  <form [formGroup]="lockForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <table class="yahtzee">
+        <tr>
+          <td width="20%"></td>
+          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
+          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
+          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
+          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
+          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
+          <td width="20%"></td>
+        </tr>
+        <tr>
+          <td class="text-right">{{'YahtzeeLock' | translate}}</td>
+          <td class="text-center"><input type="checkbox" formControlName="lock1"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock2"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock3"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock4"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock5"></td>
+          <td><button class="btn btn-primary" type="submit">{{'YahtzeeRoll' | translate}}</button></td>
+        </tr>
+      </table>
+    </div>
+  </form>
+
+</div>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'plants';
+  constructor(
+    public translate: TranslateService,
+    private cookieService: CookieService
+  ) {
+    translate.addLangs(['en', 'de']);
+    translate.setDefaultLang('en');
+
+    if (this.cookieService.get('language')) {
+      this.translate.use(this.cookieService.get('language'));
+    }
+  }
 }
