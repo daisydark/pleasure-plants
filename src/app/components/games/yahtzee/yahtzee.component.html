@@ -7,21 +7,17 @@
       <table class="yahtzee">
         <tr>
           <td width="20%"></td>
-          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
-          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
-          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
-          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
-          <td class="text-center"><fa-icon [icon]="faDiceOne"></fa-icon></td>
+          <td class="text-center" *ngFor="let dice of dices"><fa-icon [icon]="dice.faDice"></fa-icon></td>
           <td width="20%"></td>
         </tr>
         <tr>
           <td class="text-right">{{'YahtzeeLock' | translate}}</td>
-          <td class="text-center"><input type="checkbox" formControlName="lock1"></td>
-          <td class="text-center"><input type="checkbox" formControlName="lock2"></td>
-          <td class="text-center"><input type="checkbox" formControlName="lock3"></td>
-          <td class="text-center"><input type="checkbox" formControlName="lock4"></td>
-          <td class="text-center"><input type="checkbox" formControlName="lock5"></td>
-          <td><button class="btn btn-primary" type="submit">{{'YahtzeeRoll' | translate}}</button></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock1" (change)="lock(0, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock2" (change)="lock(1, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock3" (change)="lock(2, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock4" (change)="lock(3, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock5" (change)="lock(4, $event)"></td>
+          <td><button class="btn btn-primary" type="submit" [disabled]="lockSubmit">{{'YahtzeeRoll' | translate}}</button></td>
         </tr>
       </table>
     </div>
