@@ -5,7 +5,7 @@
   "GamesTitle": "Spiele",
   "Yahtzee": [
     {
-      "Title": "Yahtzee",
+      "Title": "Kniffel",
       "Lock": "Halten",
       "Roll": "Los",
       "OnesTitle": "Einer",
@@ -32,7 +32,7 @@
       "SmallStraightTeaser": "1-4, 2-5 oder 3-6",
       "LargeStraightTitle": "Große Straße",
       "LargeStraightTeaser": "1-5 oder 2-6",
-      "YahtzeeTitle": "Yahtzee",
+      "YahtzeeTitle": "Kniffel",
       "YahtzeeTeaser": "Fünf gleiche Würfel",
       "ChanceTitle": "Chance",
       "ChanceTeaser": "Alle Augen zählen",

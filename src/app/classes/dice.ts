@@ -13,7 +13,7 @@ export class Dice {
   constructor(
     public faDice: any,
   ) {
-    const periodes = [100, 200, 300];
+    const periodes = [100, 150, 200];
     const rollTimes = [2, 3, 4];
     this.periode = periodes[Math.floor(Math.random() * periodes.length)];
     this.rollTime = rollTimes[Math.floor(Math.random() * rollTimes.length)];
