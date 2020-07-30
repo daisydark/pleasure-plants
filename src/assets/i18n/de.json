@@ -3,7 +3,40 @@
   "MyBreeding": "Meine Zucht",
   "Inventory": "Inventar",
   "GamesTitle": "Spiele",
-  "YahtzeeTitle": "Knobeln",
-  "YahtzeeLock": "Halten",
-  "YahtzeeRoll": "Würfeln"
+  "Yahtzee": [
+    {
+      "Title": "Yahtzee",
+      "Lock": "Halten",
+      "Roll": "Los",
+      "OnesTitle": "Einer",
+      "OnesTeaser": "Nur Einer zählen",
+      "TwosTitle": "Zweier",
+      "TwosTeaser": "Nur Zweier zählen",
+      "ThreesTitle": "Dreier",
+      "ThreesTeaser": "Nur Dreier zählen",
+      "FoursTitle": "Vierer",
+      "FoursTeaser": "Nur Vierer zählen",
+      "FivesTitle": "Fünfer",
+      "FivesTeaser": "Nur Fünfer zählen",
+      "SixesTitle": "Sechser",
+      "SixesTeaser": "Nur Sechser zählen",
+      "BonusTitle": "Bonus",
+      "BonusTeaser": "Ab 63 Punkten",
+      "ThreeOfAKindTitle": "Dreier Pasch",
+      "ThreeOfAKindTeaser": "Mind. 3 gleiche Würfel",
+      "FourOfAKindTitle": "Vierer Pasch",
+      "FourOfAKindTeaser": "Mind. 4 gleiche Würfel",
+      "FullHouseTitle": "Full House",
+      "FullHouseTeaser": "2 und 3 gleiche Würfel",
+      "SmallStraightTitle": "Kleine Straße",
+      "SmallStraightTeaser": "1-4, 2-5 oder 3-6",
+      "LargeStraightTitle": "Große Straße",
+      "LargeStraightTeaser": "1-5 oder 2-6",
+      "YahtzeeTitle": "Yahtzee",
+      "YahtzeeTeaser": "Fünf gleiche Würfel",
+      "ChanceTitle": "Chance",
+      "ChanceTeaser": "Alle Augen zählen",
+      "Total": "Gesamt"
+    }
+  ]
 }

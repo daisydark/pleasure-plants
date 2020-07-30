@@ -3,7 +3,40 @@
   "MyBreeding": "My breeding",
   "Inventory": "Inventory",
   "GamesTitle": "Games",
-  "YahtzeeTitle": "Yahtzee",
-  "YahtzeeLock": "Lock",
-  "YahtzeeRoll": "Roll"
+  "Yahtzee": [
+    {
+      "Title": "Yahtzee",
+      "Lock": "Lock",
+      "Roll": "Roll",
+      "OnesTitle": "Ones",
+      "OnesTeaser": "All ones's",
+      "TwosTitle": "Twos",
+      "TwosTeaser": "All two's",
+      "ThreesTitle": "Threes",
+      "ThreesTeaser": "All threes's",
+      "FoursTitle": "Fours",
+      "FoursTeaser": "All four's",
+      "FivesTitle": "Fives",
+      "FivesTeaser": "All five's",
+      "SixesTitle": "Sixes",
+      "SixesTeaser": "All six's",
+      "BonusTitle": "Bonus",
+      "BonusTeaser": "For more than 63 points",
+      "ThreeOfAKindTitle": "Three of a kind",
+      "ThreeOfAKindTeaser": "At least three same valus",
+      "FourOfAKindTitle": "Four of a kind",
+      "FourOfAKindTeaser": "At least four same values",
+      "FullHouseTitle": "Full House",
+      "FullHouseTeaser": "2 and 3 same values",
+      "SmallStraightTitle": "Small straight",
+      "SmallStraightTeaser": "1-4, 2-5 or 3-6",
+      "LargeStraightTitle": "Large straight",
+      "LargeStraightTeaser": "1-5 or 2-6",
+      "YahtzeeTitle": "Yahtzee",
+      "YahtzeeTeaser": "5 same values",
+      "ChanceTitle": "Chance",
+      "ChanceTeaser": "All dices",
+      "Total": "Total"
+    }
+  ]
 }

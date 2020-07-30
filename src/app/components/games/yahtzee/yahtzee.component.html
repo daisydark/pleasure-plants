@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>{{'YahtzeeTitle' | translate}}
+  <h1>{{"Yahtzee.0.Title" | translate}}
     <fa-icon class="fa-pull-right fa-games-help" [icon]="faQuestionCircle"></fa-icon>
   </h1>
   <form [formGroup]="lockForm" (ngSubmit)="onSubmit()">
@@ -11,16 +11,62 @@
           <td width="20%"></td>
         </tr>
         <tr>
-          <td class="text-right">{{'YahtzeeLock' | translate}}</td>
+          <td class="text-right">{{'Yahtzee.0.Lock' | translate}}</td>
           <td class="text-center"><input type="checkbox" formControlName="lock1" (change)="lock(0, $event)"></td>
           <td class="text-center"><input type="checkbox" formControlName="lock2" (change)="lock(1, $event)"></td>
           <td class="text-center"><input type="checkbox" formControlName="lock3" (change)="lock(2, $event)"></td>
           <td class="text-center"><input type="checkbox" formControlName="lock4" (change)="lock(3, $event)"></td>
           <td class="text-center"><input type="checkbox" formControlName="lock5" (change)="lock(4, $event)"></td>
-          <td><button class="btn btn-primary" type="submit" [disabled]="lockSubmit">{{'YahtzeeRoll' | translate}}</button></td>
+          <td><button class="btn btn-primary" type="submit" [disabled]="lockSubmit">{{'Yahtzee.0.Roll' | translate}}</button></td>
         </tr>
       </table>
     </div>
   </form>
+  <div id="yahtzeeMessage">3 dice rolls left</div>
+  <div class="row margin-top-lg">
+    <div class="col-lg-4 col-md-3 col-sm-6">
+      <div class="font-weight-bold">{{'Yahtzee.0.OnesTitle' | translate}}</div>
+      <div>{{'Yahtzee.0.OnesTeaser' | translate}}</div>
+    </div>
+    <div class="col-md-1 col-sm-2">
+      <div class="font-weight-bold fa-pull-right">0</div>
+    </div>
+    <div class="col-lg-1 col-2">
+      <button class="btn btn-secondary fa-pull-right" disabled><span id="Ones">+0</span></button>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-6">
+      <div class="font-weight-bold">{{'Yahtzee.0.ThreeOfAKindTitle' | translate}}</div>
+      <div>{{'Yahtzee.0.ThreeOfAKindTeaser' | translate}}</div>
+    </div>
+    <div class="col-md-1 col-sm-2">
+      <div class="font-weight-bold fa-pull-right">0</div>
+    </div>
+    <div class="col-lg-1 col-2">
+      <button class="btn btn-secondary fa-pull-right" disabled><span id="ThreeOfAKind">+0</span></button>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-lg-4 col-md-3 col-sm-6">
+      <div class="font-weight-bold">{{'Yahtzee.0.TwosTitle' | translate}}</div>
+      <div>{{'Yahtzee.0.TwosTeaser' | translate}}</div>
+    </div>
+    <div class="col-md-1 col-sm-2">
+      <div class="font-weight-bold fa-pull-right">0</div>
+    </div>
+    <div class="col-lg-1 col-2">
+      <button class="btn btn-secondary fa-pull-right" disabled><span id="Ones">+0</span></button>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-6">
+      <div class="font-weight-bold">{{'Yahtzee.0.FourOfAKindTitle' | translate}}</div>
+      <div>{{'Yahtzee.0.FourOfAKindTeaser' | translate}}</div>
+    </div>
+    <div class="col-md-1 col-sm-2">
+      <div class="font-weight-bold fa-pull-right">0</div>
+    </div>
+    <div class="col-lg-1 col-2">
+      <button class="btn btn-secondary fa-pull-right" disabled><span id="ThreeOfAKind">+0</span></button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 
 </div>
