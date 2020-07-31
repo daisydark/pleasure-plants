@@ -36,7 +36,8 @@
       "YahtzeeTeaser": "5 same values",
       "ChanceTitle": "Chance",
       "ChanceTeaser": "All dices",
-      "Total": "Total"
+      "Total": "Total",
+      "RollsLeft": "rolls left"
     }
   ]
 }

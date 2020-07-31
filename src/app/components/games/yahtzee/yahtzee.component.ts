@@ -17,11 +17,11 @@ export class YahtzeeComponent implements OnInit {
   lockSubmit = false;
 
   lockForm = new FormGroup({
+    lock0: new FormControl({value: null, disabled: true}),
     lock1: new FormControl({value: null, disabled: true}),
     lock2: new FormControl({value: null, disabled: true}),
     lock3: new FormControl({value: null, disabled: true}),
-    lock4: new FormControl({value: null, disabled: true}),
-    lock5: new FormControl({value: null, disabled: true})
+    lock4: new FormControl({value: null, disabled: true})
   });
 
   constructor(
@@ -39,11 +39,11 @@ export class YahtzeeComponent implements OnInit {
 
   reset(): void {
     this.lockForm.setValue({
+      lock0: false,
       lock1: false,
       lock2: false,
       lock3: false,
-      lock4: false,
-      lock5: false
+      lock4: false
     });
     this.yahtzeeService.turn = 0;
     this.lockForm.disable();
@@ -60,5 +60,13 @@ export class YahtzeeComponent implements OnInit {
         this.lockForm.disable();
       }
     });
+  }
+
+  checkLock(box): void {
+    if (this.lockForm.enabled) {
+      const locked = this.lockForm.get('lock' + box).value === true ? false : true;
+      this.lockForm.get('lock' + box).setValue(locked);
+      this.dices[box].setLocked(locked);
+    }
   }
 }

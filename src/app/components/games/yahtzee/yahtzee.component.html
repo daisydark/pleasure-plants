@@ -7,22 +7,22 @@
       <table class="yahtzee">
         <tr>
           <td width="20%"></td>
-          <td class="text-center" *ngFor="let dice of dices"><fa-icon [icon]="dice.faDice"></fa-icon></td>
+          <td class="text-center" *ngFor="let dice of dices;let i=index"><fa-icon [icon]="dice.faDice" (click)="checkLock(i)"></fa-icon></td>
           <td width="20%"></td>
         </tr>
         <tr>
           <td class="text-right">{{'Yahtzee.0.Lock' | translate}}</td>
-          <td class="text-center"><input type="checkbox" formControlName="lock1" (change)="lock(0, $event)"></td>
-          <td class="text-center"><input type="checkbox" formControlName="lock2" (change)="lock(1, $event)"></td>
-          <td class="text-center"><input type="checkbox" formControlName="lock3" (change)="lock(2, $event)"></td>
-          <td class="text-center"><input type="checkbox" formControlName="lock4" (change)="lock(3, $event)"></td>
-          <td class="text-center"><input type="checkbox" formControlName="lock5" (change)="lock(4, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock0" (change)="lock(0, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock1" (change)="lock(1, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock2" (change)="lock(2, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock3" (change)="lock(3, $event)"></td>
+          <td class="text-center"><input type="checkbox" formControlName="lock4" (change)="lock(4, $event)"></td>
           <td><button class="btn btn-primary" type="submit" [disabled]="lockSubmit">{{'Yahtzee.0.Roll' | translate}}</button></td>
         </tr>
       </table>
     </div>
   </form>
-  <div id="yahtzeeMessage">3 dice rolls left</div>
+  <div id="yahtzeeMessage">3 rolls left</div>
   <div class="row margin-top-lg">
     <div class="col-lg-4 col-md-3 col-sm-6">
       <div class="font-weight-bold">{{'Yahtzee.0.OnesTitle' | translate}}</div>

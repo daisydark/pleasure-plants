@@ -36,7 +36,8 @@
       "YahtzeeTeaser": "Fünf gleiche Würfel",
       "ChanceTitle": "Chance",
       "ChanceTeaser": "Alle Augen zählen",
-      "Total": "Gesamt"
+      "Total": "Gesamt",
+      "RollsLeft": "Würfe übrig"
     }
   ]
 }
