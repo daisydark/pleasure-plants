@@ -37,7 +37,8 @@
       "ChanceTitle": "Chance",
       "ChanceTeaser": "Alle Augen zählen",
       "Total": "Gesamt",
-      "RollsLeft": "Würfe übrig"
+      "RollsLeft": "Würfe übrig",
+      "RollLeft": "Wurf übrig"
     }
   ]
 }

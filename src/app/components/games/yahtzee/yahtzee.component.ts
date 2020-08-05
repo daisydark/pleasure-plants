@@ -15,6 +15,7 @@ export class YahtzeeComponent implements OnInit {
   faQuestionCircle = faQuestionCircle;
   dices: Dice[] = this.diceService.dices;
   lockSubmit = false;
+  buttonDisabled = true;
 
   lockForm = new FormGroup({
     lock0: new FormControl({value: null, disabled: true}),
@@ -25,8 +26,8 @@ export class YahtzeeComponent implements OnInit {
   });
 
   constructor(
-    private diceService: DiceService,
-    private yahtzeeService: YahtzeeService
+    public diceService: DiceService,
+    public yahtzeeService: YahtzeeService
   ) { }
 
   ngOnInit(): void {
@@ -46,18 +47,31 @@ export class YahtzeeComponent implements OnInit {
       lock4: false
     });
     this.yahtzeeService.turn = 0;
+    this.buttonDisabled = true;
     this.lockForm.disable();
+
+    for (const dice of this.diceService.dices) {
+      dice.setLocked(false);
+    }
+
+    this.lockSubmit = false;
   }
 
   onSubmit(): void {
     this.yahtzeeService.turn++;
     this.lockSubmit = true;
     this.diceService.roll().then((value) => {
+      this.yahtzeeService.calculate();
       if (this.yahtzeeService.turn < 3) {
         this.lockSubmit = false;
         this.lockForm.enable();
       } else {
         this.lockForm.disable();
+      }
+      if (this.yahtzeeService.turn > 0) {
+        this.buttonDisabled = false;
+      } else {
+        this.buttonDisabled = true;
       }
     });
   }
@@ -68,5 +82,12 @@ export class YahtzeeComponent implements OnInit {
       this.lockForm.get('lock' + box).setValue(locked);
       this.dices[box].setLocked(locked);
     }
+  }
+
+  select(dice, event): void {
+    event.target.remove();
+    this.yahtzeeService.lock(dice);
+    this.yahtzeeService.calculateTotal();
+    this.reset();
   }
 }

@@ -37,7 +37,8 @@
       "ChanceTitle": "Chance",
       "ChanceTeaser": "All dices",
       "Total": "Total",
-      "RollsLeft": "rolls left"
+      "RollsLeft": "rolls left",
+      "RollLeft": "roll left"
     }
   ]
 }

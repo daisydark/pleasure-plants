@@ -22,162 +22,188 @@
       </table>
     </div>
   </form>
-  <div id="yahtzeeMessage">3 rolls left</div>
+  <div id="yahtzeeMessage">{{yahtzeeService.getRollsLeft()}}</div>
   <div class="row margin-top-lg">
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.OnesTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.OnesTeaser' | translate}}</div>
+    <div class="col-md-6 col-xs-12">
+      <div class="row">
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.OnesTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.OnesTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.onesLocked;else zero">{{yahtzeeService.ones}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('ones', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.onesLocked">{{yahtzeeService.ones}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.TwosTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.TwosTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.twosLocked;else zero">{{yahtzeeService.twos}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('twos', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.twosLocked">{{yahtzeeService.twos}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.ThreesTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.ThreesTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.threesLocked;else zero">{{yahtzeeService.threes}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('threes', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.threesLocked">{{yahtzeeService.threes}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.FoursTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.FoursTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.foursLocked;else zero">{{yahtzeeService.fours}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('fours', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.foursLocked">{{yahtzeeService.fours}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.FivesTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.FivesTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.fivesLocked;else zero">{{yahtzeeService.fives}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('fives', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.fivesLocked">{{yahtzeeService.fives}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.SixesTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.SixesTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sixesLocked;else zero">{{yahtzeeService.sixes}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('sixes', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.sixesLocked">{{yahtzeeService.sixes}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.BonusTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.BonusTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right">{{yahtzeeService.bonus}}</div>
+        </div>
+        <div class="col-2"></div>
+      </div>
     </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
+    <div class="col-md-6 col-xs-12">
+      <div class="row">
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.ThreeOfAKindTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.ThreeOfAKindTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.threeOfAKindLocked;else zero">{{yahtzeeService.threeOfAKind}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('threeOfAKind', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.threeOfAKindLocked">{{yahtzeeService.threeOfAKind}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.FourOfAKindTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.FourOfAKindTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.fourOfAKindLocked;else zero">{{yahtzeeService.fourOfAKind}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('fourOfAKind', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.fourOfAKindLocked">{{yahtzeeService.fourOfAKind}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.FullHouseTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.FullHouseTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.fullHouseLocked;else zero">{{yahtzeeService.fullHouse}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('fullHouse', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.fullHouseLocked">{{yahtzeeService.fullHouse}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.SmallStraightTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.SmallStraightTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.smallStraightLocked;else zero">{{yahtzeeService.smallStraight}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('smallStraight', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.smallStraightLocked">{{yahtzeeService.smallStraight}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.LargeStraightTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.LargeStraightTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.largeStraightLocked;else zero">{{yahtzeeService.largeStraight}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('largeStraight', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.largeStraightLocked">{{yahtzeeService.largeStraight}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.YahtzeeTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.YahtzeeTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.yahtzee;else zero">{{yahtzeeService.yahtzee}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('yahtzee', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.yahtzeeLocked">{{yahtzeeService.yahtzee}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.ChanceTitle' | translate}}</div>
+          <div>{{'Yahtzee.0.ChanceTeaser' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.chanceLocked;else zero">{{yahtzeeService.chance}}</span></div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary fa-pull-right width-50"
+                  (click)="select('chance', $event)"
+                  [disabled]="buttonDisabled || yahtzeeService.chanceLocked">{{yahtzeeService.chance}}</button>
+        </div>
+        <div class="col-8">
+          <div class="font-weight-bold">{{'Yahtzee.0.Total' | translate}}</div>
+        </div>
+        <div class="col-2">
+          <div class="font-weight-bold fa-pull-right">{{yahtzeeService.total}}</div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+      </div>
     </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="Ones">0</span></button>
-    </div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.ThreeOfAKindTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.ThreeOfAKindTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="ThreeOfAKind">0</span></button>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.TwosTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.TwosTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="Twos">0</span></button>
-    </div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.FourOfAKindTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.FourOfAKindTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="FourOfAKind">0</span></button>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.ThreesTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.ThreesTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="Threes">0</span></button>
-    </div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.FullHouseTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.FullHouseTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="FullHouse">0</span></button>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.FoursTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.FoursTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="Fours">0</span></button>
-    </div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.SmallStraightTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.SmallStraightTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="SmallStraight">0</span></button>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.FivesTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.FivesTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="Fives">0</span></button>
-    </div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.LargeStraightTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.LargeStraightTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="LargeStraight">0</span></button>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.SixesTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.SixesTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="Sixes">0</span></button>
-    </div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.YahtzeeTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.YahtzeeTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="Yahtzee">0</span></button>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.BonusTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.BonusTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.ChanceTitle' | translate}}</div>
-      <div>{{'Yahtzee.0.ChanceTeaser' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2">
-      <button class="btn btn-secondary fa-pull-right" disabled><span id="Chance">0</span></button>
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6"></div>
-    <div class="col-md-1 col-sm-2"></div>
-    <div class="col-lg-1 col-2"></div>
-    <div class="col-lg-4 col-md-3 col-sm-6">
-      <div class="font-weight-bold">{{'Yahtzee.0.Total' | translate}}</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <div class="font-weight-bold fa-pull-right">0</div>
-    </div>
-    <div class="col-lg-1 col-2"></div>
-  </div>
+  <div class="clearfix margin-top-lg"></div>
 </div>
+<ng-template #zero>0</ng-template>
