@@ -1,4 +1,4 @@
-<div class="card {{getClass()}}">
+<div *ngIf="getClass(); else empty" class="card {{getClass()}}">
   <div class="front">
     <div class="corner top">
       <span class="number">{{number}}</span>
@@ -108,4 +108,7 @@
     <span *ngSwitchCase="'hearts'">♥</span>
     <span *ngSwitchCase="'spades'">♠</span>
   </div>
+</ng-template>
+<ng-template #empty>
+  <div class="card empty"></div>
 </ng-template>
