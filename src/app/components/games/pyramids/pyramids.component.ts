@@ -10,10 +10,16 @@ export class PyramidsComponent implements OnInit {
 
   faQuestionCircle = faQuestionCircle;
 
+  cards = [];
+
   constructor() { }
 
   ngOnInit(): void {
-
+    this.cards.push('back');
+    this.cards.push('back');
+    this.cards.push('back');
+    this.cards.push('back');
+    this.cards.push('back');
   }
 
 }

@@ -1,4 +1,20 @@
-<img src="/assets/img/cards/2C.png">
-<img src="/assets/img/cards/2D.png" style="width: 45px">
-<img src="/assets/img/cards/2H.png">
-<img src="/assets/img/cards/2S.png">
+<div class="container">
+  <h1>{{"Pyramids.0.Title" | translate}}
+    <fa-icon class="fa-pull-right fa-games-help" [icon]="faQuestionCircle"></fa-icon>
+  </h1>
+  <div class="pyramids">
+    <div class="pcard">
+      <img src="/assets/img/cards/{{cards[0]}}.png">
+    </div>
+    <div class="pcard p1">
+      <img src="/assets/img/cards/{{cards[0]}}.png">
+      <img src="/assets/img/cards/{{cards[0]}}.png">
+    </div>
+    <div class="pcard p2">
+      <img src="/assets/img/cards/{{cards[0]}}.png">
+      <img src="/assets/img/cards/{{cards[0]}}.png">
+      <img src="/assets/img/cards/{{cards[0]}}.png">
+    </div>
+  </div>
+
+</div>
