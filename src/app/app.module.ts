@@ -19,7 +19,6 @@ import { YahtzeeComponent } from './components/games/yahtzee/yahtzee.component';
 import { GamesComponent } from './components/content/games/games.component';
 import { ReplacePipe } from './pipes/replace.pipe';
 import { PyramidsComponent } from './components/games/pyramids/pyramids.component';
-import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { CardComponent } from './components/card/card.component';
     YahtzeeComponent,
     GamesComponent,
     ReplacePipe,
-    PyramidsComponent,
-    CardComponent
+    PyramidsComponent
   ],
   imports: [
     BrowserModule,
