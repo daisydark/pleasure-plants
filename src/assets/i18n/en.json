@@ -43,5 +43,10 @@
       "OverPoints": "You gained ##POINTS## points!",
       "OverNewGame": "Start a new game"
     }
+  ],
+  "Pyramids": [
+    {
+      "Title" : "Pyramids"
+    }
   ]
 }

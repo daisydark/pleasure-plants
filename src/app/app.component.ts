@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CookieService } from "ngx-cookie-service";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',

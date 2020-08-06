@@ -18,6 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { YahtzeeComponent } from './components/games/yahtzee/yahtzee.component';
 import { GamesComponent } from './components/content/games/games.component';
 import { ReplacePipe } from './pipes/replace.pipe';
+import { PyramidsComponent } from './components/games/pyramids/pyramids.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ReplacePipe } from './pipes/replace.pipe';
     BreedingComponent,
     YahtzeeComponent,
     GamesComponent,
-    ReplacePipe
+    ReplacePipe,
+    PyramidsComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
