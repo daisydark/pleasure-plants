@@ -41,17 +41,11 @@ export class YahtzeeService {
   total = 0;
 
   constructor(
-    private diceService: DiceService,
-    public translate: TranslateService
+    private diceService: DiceService
   ) {}
 
-  getRollsLeft(): string {
-    const left = 3 - this.turn;
-    return left === 1 ? left + ' ' + this.translate.instant('Yahtzee.0.RollLeft') : left + ' ' + this.translate.instant('Yahtzee.0.RollsLeft');
-  }
-
   calculate(): void {
-    this.reset();
+    this.resetValues();
 
     let total = 0;
     const values = [0, 0, 0, 0, 0, 0];
@@ -176,7 +170,7 @@ export class YahtzeeService {
     this.total = total;
   }
 
-  protected reset(): void {
+  protected resetValues(): void {
     if ( ! this.onesLocked) { this.ones = 0; }
     if ( ! this.twosLocked) { this.twos = 0; }
     if ( ! this.threesLocked) { this.threes = 0; }
@@ -235,5 +229,56 @@ export class YahtzeeService {
         this.chanceLocked = true;
         break;
     }
+  }
+
+  finished(): boolean {
+    return this.onesLocked &&
+      this.twosLocked &&
+      this.threesLocked &&
+      this.foursLocked &&
+      this.fivesLocked &&
+      this.sixesLocked &&
+      this.threeOfAKindLocked &&
+      this.fourOfAKindLocked &&
+      this.fullHouseLocked &&
+      this.smallStraight &&
+      this.largeStraightLocked &&
+      this.yahtzeeLocked &&
+      this.chanceLocked;
+  }
+
+  reset(): void {
+    this.turn = 0;
+
+    this.ones = 0;
+    this.onesLocked = false;
+    this.twos = 0;
+    this.twosLocked = false;
+    this.threes = 0;
+    this.threesLocked = false;
+    this.fours = 0;
+    this.foursLocked = false;
+    this.fives = 0;
+    this.fivesLocked = false;
+    this.sixes = 0;
+    this.sixesLocked = false;
+
+    this.threeOfAKind = 0;
+    this.threeOfAKindLocked = false;
+    this.fourOfAKind = 0;
+    this.fourOfAKindLocked = false;
+    this.fullHouse = 0;
+    this.fullHouseLocked = false;
+    this.smallStraight = 0;
+    this.smallStraightLocked = false;
+    this.largeStraight = 0;
+    this.largeStraightLocked = false;
+    this.yahtzee = 0;
+    this.yahtzeeLocked = false;
+    this.chance = 0;
+    this.chanceLocked = false;
+
+    this.bonus = 0;
+    this.total = 0;
   }
 }

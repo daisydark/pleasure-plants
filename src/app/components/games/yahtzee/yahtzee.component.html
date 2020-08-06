@@ -22,7 +22,12 @@
       </table>
     </div>
   </form>
-  <div id="yahtzeeMessage">{{yahtzeeService.getRollsLeft()}}</div>
+  <div class="alert text-center margin-top-md" *ngIf="showMessage">{{getRollsLeft()}}</div>
+  <div class="alert alert-success text-center margin-top-md" *ngIf="!showMessage">
+    <div><b>{{'Yahtzee.0.Over' | translate}}</b></div>
+    <div>{{'Yahtzee.0.OverPoints' | translate | replace: '##POINTS##' : getTotal()}}</div>
+    <div class="margin-top-sm"><button class="btn btn-secondary" (click)="newGame()">{{'Yahtzee.0.OverNewGame' | translate}}</button></div>
+  </div>
   <div class="row margin-top-lg">
     <div class="col-md-6 col-xs-12">
       <div class="row">

@@ -1,8 +1,36 @@
-#yahtzeeMessage {
-  text-align:center;
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  fa-icon {
+    font-size:35px;
+  }
+  .yahtzee {
+    width:100%;
+  }
 }
 
-@media only screen and (min-width: 601px) {
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  fa-icon {
+    font-size:45px;
+  }
+  .yahtzee {
+    width:100%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  fa-icon {
+    font-size:50px;
+  }
+  .yahtzee {
+    width:75%;
+    margin:0 auto;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
   fa-icon {
     font-size:50px;
   }
@@ -12,11 +40,10 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
-  fa-icon {
-    font-size:30px;
-  }
-  .yahtzee {
-    width:100%;
-  }
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }
+
+
+

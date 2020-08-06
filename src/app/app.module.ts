@@ -17,6 +17,7 @@ import { BreedingComponent } from './components/interactive/breeding/breeding.co
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { YahtzeeComponent } from './components/games/yahtzee/yahtzee.component';
 import { GamesComponent } from './components/content/games/games.component';
+import { ReplacePipe } from './pipes/replace.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { GamesComponent } from './components/content/games/games.component';
     FooterComponent,
     BreedingComponent,
     YahtzeeComponent,
-    GamesComponent
+    GamesComponent,
+    ReplacePipe
   ],
   imports: [
     BrowserModule,

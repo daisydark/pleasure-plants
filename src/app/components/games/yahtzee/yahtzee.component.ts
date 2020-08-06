@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Dice } from '../../../classes/dice';
 import { DiceService } from '../../../services/dice.service';
 import { YahtzeeService } from '../../../services/games/yahtzee.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-yahtzee',
@@ -16,6 +17,8 @@ export class YahtzeeComponent implements OnInit {
   dices: Dice[] = this.diceService.dices;
   lockSubmit = false;
   buttonDisabled = true;
+  showMessage = true;
+  hiddenBtn = [];
 
   lockForm = new FormGroup({
     lock0: new FormControl({value: null, disabled: true}),
@@ -27,18 +30,19 @@ export class YahtzeeComponent implements OnInit {
 
   constructor(
     public diceService: DiceService,
-    public yahtzeeService: YahtzeeService
+    public yahtzeeService: YahtzeeService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit(): void {
-    this.diceService.generate(5);
+    this.newGame();
   }
 
   lock(dice, event): void {
     this.dices[dice].setLocked(event.target.checked);
   }
 
-  reset(): void {
+  resetRoll(): void {
     this.lockForm.setValue({
       lock0: false,
       lock1: false,
@@ -53,8 +57,6 @@ export class YahtzeeComponent implements OnInit {
     for (const dice of this.diceService.dices) {
       dice.setLocked(false);
     }
-
-    this.lockSubmit = false;
   }
 
   onSubmit(): void {
@@ -85,9 +87,43 @@ export class YahtzeeComponent implements OnInit {
   }
 
   select(dice, event): void {
-    event.target.remove();
+    this.hiddenBtn.push(event.target);
+    event.target.setAttribute('style', 'display:none');
     this.yahtzeeService.lock(dice);
     this.yahtzeeService.calculateTotal();
-    this.reset();
+    this.resetRoll();
+
+    if (this.yahtzeeService.finished()) {
+      this.showMessage = false;
+    } else {
+      this.lockSubmit = false;
+    }
+  }
+
+  getRollsLeft(): string {
+      const left = 3 - this.yahtzeeService.turn;
+      return left === 1 ? left + ' ' + this.translate.instant('Yahtzee.0.RollLeft') : left + ' ' + this.translate.instant('Yahtzee.0.RollsLeft');
+  }
+
+  getTotal(): string {
+    return this.yahtzeeService.total.toString();
+  }
+
+  newGame(): void {
+    this.diceService.reset();
+    this.diceService.generate(5);
+    this.yahtzeeService.reset();
+
+    this.dices = this.diceService.dices;
+    this.lockSubmit = false;
+    this.buttonDisabled = true;
+    this.showMessage = true;
+    this.lockForm.reset();
+
+    for (const btn of this.hiddenBtn) {
+      btn.setAttribute('style', 'display:inline');
+    }
+
+    this.hiddenBtn = [];
   }
 }

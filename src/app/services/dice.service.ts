@@ -27,4 +27,8 @@ export class DiceService {
     return Promise.all(promises);
   }
 
+  reset(): void {
+    this.dices = [];
+  }
+
 }

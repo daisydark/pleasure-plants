@@ -38,7 +38,10 @@
       "ChanceTeaser": "Alle Augen zählen",
       "Total": "Gesamt",
       "RollsLeft": "Würfe übrig",
-      "RollLeft": "Wurf übrig"
+      "RollLeft": "Wurf übrig",
+      "Over": "Das Spiel ist vorbei",
+      "OverPoints": "Du hast ##POINTS## Punkte erreicht!",
+      "OverNewGame": "Neues Spiel starten"
     }
   ]
 }

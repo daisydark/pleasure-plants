@@ -38,7 +38,10 @@
       "ChanceTeaser": "All dices",
       "Total": "Total",
       "RollsLeft": "rolls left",
-      "RollLeft": "roll left"
+      "RollLeft": "roll left",
+      "Over": "The game is over",
+      "OverPoints": "You gained ##POINTS## points!",
+      "OverNewGame": "Start a new game"
     }
   ]
 }
