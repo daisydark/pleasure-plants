@@ -119,7 +119,7 @@ export class YahtzeeService {
       this.smallStraight = 30;
     }
 
-    if ( ! this.smallStraightLocked &&
+    if ( ! this.largeStraightLocked &&
       ((values[0] === 1 && values[1] === 1 && values[2] === 1 && values[3] === 1 && values[4] === 1) ||
         (values[1] === 1 && values[2] === 1 && values[3] === 1 && values[4] === 1 && values[5] === 1))) {
       this.largeStraight = 40;
