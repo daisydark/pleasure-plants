@@ -6,14 +6,56 @@
   position:relative;
 }
 
-.pcard img {
-  width:50px;
+.playcards img { margin:30px 15px; }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .pcard img {
+    width:42px;
+  }
+
+  .p1 { bottom:30px; }
+  .p2 { bottom:60px; }
+  .p3 { bottom:90px; }
+  .p4 { bottom:120px; }
+  .p5 { bottom:150px; }
+  .p6 { bottom:180px; }
 }
 
-.p1 {
-  bottom:35px;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .pcard img {
+    width:50px;
+  }
+
+  .p1 { bottom:35px; }
+  .p2 { bottom:70px; }
+  .p3 { bottom:105px; }
+  .p4 { bottom:140px; }
+  .p5 { bottom:175px; }
+  .p6 { bottom:210px; }
 }
 
-.p2{
-  bottom:70px;
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .pcard img {
+    width:60px;
+  }
+
+  .p1 { bottom:45px; }
+  .p2 { bottom:90px; }
+  .p3 { bottom:135px; }
+  .p4 { bottom:180px; }
+  .p5 { bottom:225px; }
+  .p6 { bottom:270px; }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { PyramidsService } from '../../../services/games/pyramids.service';
+import { CardService } from '../../../services/card.service';
 
 @Component({
   selector: 'app-pyramids',
@@ -9,17 +11,15 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 export class PyramidsComponent implements OnInit {
 
   faQuestionCircle = faQuestionCircle;
+  cards = this.pyramidsService.deck;
 
-  cards = [];
-
-  constructor() { }
+  constructor(
+    public pyramidsService: PyramidsService,
+    public cardService: CardService
+  ) { }
 
   ngOnInit(): void {
-    this.cards.push('back');
-    this.cards.push('back');
-    this.cards.push('back');
-    this.cards.push('back');
-    this.cards.push('back');
+    this.pyramidsService.generate();
   }
 
 }
