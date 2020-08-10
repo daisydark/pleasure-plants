@@ -27,7 +27,7 @@ export class CardService {
 
   generate(cardDeck: number): void {
     if (cardDeck === 52) {
-      this.deck.concat(this.deck52);
+      this.deck = this.deck.concat(this.deck52);
     }
     this.shuffle();
   }

@@ -4,50 +4,56 @@
   </h1>
   <div class="pyramids">
     <div class="pcard">
-      <img src="{{cards[0].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[0].getImgUrl()}}">
     </div>
     <div class="pcard p1">
-      <img src="{{cards[1].getImgUrl()}}">
-      <img src="{{cards[2].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[1].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[2].getImgUrl()}}">
     </div>
     <div class="pcard p2">
-      <img src="{{cards[3].getImgUrl()}}">
-      <img src="{{cards[4].getImgUrl()}}">
-      <img src="{{cards[5].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[3].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[4].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[5].getImgUrl()}}">
     </div>
     <div class="pcard p3">
-      <img src="{{cards[6].getImgUrl()}}">
-      <img src="{{cards[7].getImgUrl()}}">
-      <img src="{{cards[8].getImgUrl()}}">
-      <img src="{{cards[9].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[6].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[7].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[8].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[9].getImgUrl()}}">
     </div>
     <div class="pcard p4">
-      <img src="{{cards[10].getImgUrl()}}">
-      <img src="{{cards[11].getImgUrl()}}">
-      <img src="{{cards[12].getImgUrl()}}">
-      <img src="{{cards[13].getImgUrl()}}">
-      <img src="{{cards[14].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[10].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[11].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[12].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[13].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[14].getImgUrl()}}">
     </div>
     <div class="pcard p5">
-      <img src="{{cards[15].getImgUrl()}}">
-      <img src="{{cards[16].getImgUrl()}}">
-      <img src="{{cards[17].getImgUrl()}}">
-      <img src="{{cards[18].getImgUrl()}}">
-      <img src="{{cards[19].getImgUrl()}}">
-      <img src="{{cards[20].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[15].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[16].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[17].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[18].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[19].getImgUrl()}}">
+      <img src="{{this.pyramidsService.deck[20].getImgUrl()}}">
     </div>
     <div class="pcard p6">
-      <img src="{{cards[21].getImgUrl()}}">
-      <img src="{{cards[22].getImgUrl()}}">
-      <img src="{{cards[23].getImgUrl()}}">
-      <img src="{{cards[24].getImgUrl()}}">
-      <img src="{{cards[25].getImgUrl()}}">
-      <img src="{{cards[26].getImgUrl()}}">
-      <img src="{{cards[27].getImgUrl()}}">
+      <img class="pointer" (click)="layDown(21, 7, $event)" src="{{this.pyramidsService.deck[21].getImgUrl()}}">
+      <img class="pointer" (click)="layDown(22, 7, $event)" src="{{this.pyramidsService.deck[22].getImgUrl()}}">
+      <img class="pointer" (click)="layDown(23, 7, $event)" src="{{this.pyramidsService.deck[23].getImgUrl()}}">
+      <img class="pointer" (click)="layDown(24, 7, $event)" src="{{this.pyramidsService.deck[24].getImgUrl()}}">
+      <img class="pointer" (click)="layDown(25, 7, $event)" src="{{this.pyramidsService.deck[25].getImgUrl()}}">
+      <img class="pointer" (click)="layDown(26, 7, $event)" src="{{this.pyramidsService.deck[26].getImgUrl()}}">
+      <img class="pointer" (click)="layDown(27, 7, $event)" src="{{this.pyramidsService.deck[27].getImgUrl()}}">
     </div>
     <div class="pcard p6 playcards">
-      <img src="{{cardService.getBackImgUrl()}}">
-      <img src="{{cards[28].getImgUrl()}}">
+      <div class="row">
+        <div class="col-6 text-right">
+          <img class="pointer" *ngIf="showDeck" (click)="draw()" src="{{this.cardService.getBackImgUrl()}}">
+        </div>
+        <div class="col-6 text-left">
+          <img src="{{this.pyramidsService.activeCard.getImgUrl()}}">
+        </div>
+      </div>
     </div>
   </div>
 </div>
