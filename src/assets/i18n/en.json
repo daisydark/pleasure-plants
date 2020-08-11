@@ -46,7 +46,12 @@
   ],
   "Pyramids": [
     {
-      "Title" : "Pyramids"
+      "Title" : "Pyramids",
+      "CardsLeft": "Cards left:",
+      "Points": "Points:",
+      "Over": "The game is over",
+      "OverPoints": "You gained ##POINTS## points!",
+      "OverNewGame": "Start a new game"
     }
   ]
 }

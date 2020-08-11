@@ -3,6 +3,8 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { PyramidsService } from '../../../services/games/pyramids.service';
 import { CardService } from '../../../services/card.service';
 import { Card } from '../../../classes/card';
+import {TranslateService} from '@ngx-translate/core';
+import {YahtzeeService} from '../../../services/games/yahtzee.service';
 
 @Component({
   selector: 'app-pyramids',
@@ -13,10 +15,12 @@ export class PyramidsComponent implements OnInit {
 
   faQuestionCircle = faQuestionCircle;
   showDeck = true;
+  showMessage = true;
 
   constructor(
     public pyramidsService: PyramidsService,
-    public cardService: CardService
+    public cardService: CardService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -29,10 +33,16 @@ export class PyramidsComponent implements OnInit {
       this.showDeck = false;
     }
   }
-
-  layDown(cardIndex, line, $event): void {
-    if (this.pyramidsService.layDown(cardIndex, line)) {
-      $event.target.setAttribute('style', 'visibility:hidden');
-    }
+  getCardsLeft(): string {
+    return '' + this.pyramidsService.cardsLeft;
   }
+
+  getPoints(): string {
+    return '' + this.pyramidsService.points;
+  }
+
+  newGame(): void {
+
+  }
+
 }

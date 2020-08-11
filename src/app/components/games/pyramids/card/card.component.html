@@ -1,0 +1,6 @@
+<img *ngIf="this.pyramidsService.deck[cardNumber].covered == false; else back"
+     class="pointer"
+     (click)="layDown(cardNumber, line, $event)"
+     src="{{this.pyramidsService.deck[cardNumber].getImgUrl()}}">
+
+<ng-template #back><img src="/assets/img/cards/back.png"></ng-template>

@@ -10,6 +10,8 @@ export class PyramidsService {
   deck: Card[] = [];
   activeCard: Card;
   lastDiscarded = 28;
+  cardsLeft = 23;
+  points = 0;
 
   constructor(
     protected cardService: CardService
@@ -54,20 +56,24 @@ export class PyramidsService {
     this.lastDiscarded++;
     this.deck[this.lastDiscarded].covered = false;
     this.activeCard = this.deck[this.lastDiscarded];
+    this.cardsLeft--;
   }
 
-  layDown(cardIndex, line): boolean {
-    if (this.deck[cardIndex].covered === false && this.compare(this.deck[cardIndex])) {
-      this.activeCard = this.deck[cardIndex];
-      this.deck[cardIndex].played = true;
-      if (line === 1) {
+  layDown(cardIndex, line): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (this.deck[cardIndex].covered === false && this.compare(this.deck[cardIndex])) {
+        this.activeCard = this.deck[cardIndex];
+        this.deck[cardIndex].played = true;
+        if (line === 1) {
 
+        } else {
+          this.checkLine(line - 1);
+        }
+        resolve(1);
       } else {
-        this.checkLine(line - 1);
+        reject(1);
       }
-      return true;
-    }
-    return false;
+    });
   }
 
   private checkLine(line): void {
@@ -76,6 +82,76 @@ export class PyramidsService {
       case 6:
         if (this.deck[21].played && this.deck[22].played) {
           this.deck[15].covered = false;
+        }
+        if (this.deck[22].played && this.deck[23].played) {
+          this.deck[16].covered = false;
+        }
+        if (this.deck[23].played && this.deck[24].played) {
+          this.deck[17].covered = false;
+        }
+        if (this.deck[24].played && this.deck[25].played) {
+          this.deck[18].covered = false;
+        }
+        if (this.deck[25].played && this.deck[26].played) {
+          this.deck[19].covered = false;
+        }
+        if (this.deck[26].played && this.deck[27].played) {
+          this.deck[20].covered = false;
+        }
+        break;
+      case 5:
+        if (this.deck[15].played && this.deck[16].played) {
+          this.deck[10].covered = false;
+        }
+        if (this.deck[16].played && this.deck[17].played) {
+          this.deck[11].covered = false;
+        }
+        if (this.deck[17].played && this.deck[18].played) {
+          this.deck[12].covered = false;
+        }
+        if (this.deck[18].played && this.deck[19].played) {
+          this.deck[13].covered = false;
+        }
+        if (this.deck[19].played && this.deck[20].played) {
+          this.deck[14].covered = false;
+        }
+        break;
+      case 4:
+        if (this.deck[10].played && this.deck[11].played) {
+          this.deck[6].covered = false;
+        }
+        if (this.deck[11].played && this.deck[12].played) {
+          this.deck[7].covered = false;
+        }
+        if (this.deck[12].played && this.deck[13].played) {
+          this.deck[8].covered = false;
+        }
+        if (this.deck[13].played && this.deck[14].played) {
+          this.deck[9].covered = false;
+        }
+        break;
+      case 3:
+        if (this.deck[6].played && this.deck[7].played) {
+          this.deck[3].covered = false;
+        }
+        if (this.deck[7].played && this.deck[8].played) {
+          this.deck[4].covered = false;
+        }
+        if (this.deck[8].played && this.deck[9].played) {
+          this.deck[5].covered = false;
+        }
+        break;
+      case 2:
+        if (this.deck[3].played && this.deck[4].played) {
+          this.deck[1].covered = false;
+        }
+        if (this.deck[4].played && this.deck[5].played) {
+          this.deck[2].covered = false;
+        }
+        break;
+      case 1:
+        if (this.deck[1].played && this.deck[2].played) {
+          this.deck[0].covered = false;
         }
         break;
     }

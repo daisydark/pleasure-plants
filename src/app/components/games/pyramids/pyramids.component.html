@@ -2,50 +2,56 @@
   <h1>{{"Pyramids.0.Title" | translate}}
     <fa-icon class="fa-pull-right fa-games-help" [icon]="faQuestionCircle"></fa-icon>
   </h1>
+  <div class="text-right">{{"Pyramids.0.CardsLeft" | translate}} {{getCardsLeft()}} | {{"Pyramids.0.Points" | translate}} {{getPoints()}}</div>
   <div class="pyramids">
     <div class="pcard">
-      <img src="{{this.pyramidsService.deck[0].getImgUrl()}}">
+      <app-card cardNumber="0" line="1"></app-card>
     </div>
     <div class="pcard p1">
-      <img src="{{this.pyramidsService.deck[1].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[2].getImgUrl()}}">
+      <app-card cardNumber="1" line="2"></app-card>
+      <app-card cardNumber="2" line="2"></app-card>
     </div>
     <div class="pcard p2">
-      <img src="{{this.pyramidsService.deck[3].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[4].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[5].getImgUrl()}}">
+      <app-card cardNumber="3" line="3"></app-card>
+      <app-card cardNumber="4" line="3"></app-card>
+      <app-card cardNumber="5" line="3"></app-card>
     </div>
     <div class="pcard p3">
-      <img src="{{this.pyramidsService.deck[6].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[7].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[8].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[9].getImgUrl()}}">
+      <app-card cardNumber="6" line="4"></app-card>
+      <app-card cardNumber="7" line="4"></app-card>
+      <app-card cardNumber="8" line="4"></app-card>
+      <app-card cardNumber="9" line="4"></app-card>
     </div>
     <div class="pcard p4">
-      <img src="{{this.pyramidsService.deck[10].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[11].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[12].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[13].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[14].getImgUrl()}}">
+      <app-card cardNumber="10" line="5"></app-card>
+      <app-card cardNumber="11" line="5"></app-card>
+      <app-card cardNumber="12" line="5"></app-card>
+      <app-card cardNumber="13" line="5"></app-card>
+      <app-card cardNumber="14" line="5"></app-card>
     </div>
     <div class="pcard p5">
-      <img src="{{this.pyramidsService.deck[15].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[16].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[17].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[18].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[19].getImgUrl()}}">
-      <img src="{{this.pyramidsService.deck[20].getImgUrl()}}">
+      <app-card cardNumber="15" line="6"></app-card>
+      <app-card cardNumber="16" line="6"></app-card>
+      <app-card cardNumber="17" line="6"></app-card>
+      <app-card cardNumber="18" line="6"></app-card>
+      <app-card cardNumber="19" line="6"></app-card>
+      <app-card cardNumber="20" line="6"></app-card>
     </div>
     <div class="pcard p6">
-      <img class="pointer" (click)="layDown(21, 7, $event)" src="{{this.pyramidsService.deck[21].getImgUrl()}}">
-      <img class="pointer" (click)="layDown(22, 7, $event)" src="{{this.pyramidsService.deck[22].getImgUrl()}}">
-      <img class="pointer" (click)="layDown(23, 7, $event)" src="{{this.pyramidsService.deck[23].getImgUrl()}}">
-      <img class="pointer" (click)="layDown(24, 7, $event)" src="{{this.pyramidsService.deck[24].getImgUrl()}}">
-      <img class="pointer" (click)="layDown(25, 7, $event)" src="{{this.pyramidsService.deck[25].getImgUrl()}}">
-      <img class="pointer" (click)="layDown(26, 7, $event)" src="{{this.pyramidsService.deck[26].getImgUrl()}}">
-      <img class="pointer" (click)="layDown(27, 7, $event)" src="{{this.pyramidsService.deck[27].getImgUrl()}}">
+      <app-card cardNumber="21" line="7"></app-card>
+      <app-card cardNumber="22" line="7"></app-card>
+      <app-card cardNumber="23" line="7"></app-card>
+      <app-card cardNumber="24" line="7"></app-card>
+      <app-card cardNumber="25" line="7"></app-card>
+      <app-card cardNumber="26" line="7"></app-card>
+      <app-card cardNumber="27" line="7"></app-card>
     </div>
     <div class="pcard p6 playcards">
+      <div class="alert alert-success text-center" *ngIf="!showMessage">
+        <div><b>{{'Pyramids.0.Over' | translate}}</b></div>
+        <div>{{'Pyramids.0.OverPoints' | translate | replace: '##POINTS##' : getPoints()}}</div>
+        <div class="margin-top-sm"><button class="btn btn-secondary" (click)="newGame()">{{'Pyramids.0.OverNewGame' | translate}}</button></div>
+      </div>
       <div class="row">
         <div class="col-6 text-right">
           <img class="pointer" *ngIf="showDeck" (click)="draw()" src="{{this.cardService.getBackImgUrl()}}">
