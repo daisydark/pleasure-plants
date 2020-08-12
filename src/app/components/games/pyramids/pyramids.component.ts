@@ -5,6 +5,7 @@ import { CardService } from '../../../services/card.service';
 import { Card } from '../../../classes/card';
 import {TranslateService} from '@ngx-translate/core';
 import {YahtzeeService} from '../../../services/games/yahtzee.service';
+import {toArray} from 'rxjs/operators';
 
 @Component({
   selector: 'app-pyramids',
@@ -15,7 +16,6 @@ export class PyramidsComponent implements OnInit {
 
   faQuestionCircle = faQuestionCircle;
   showDeck = true;
-  showMessage = true;
 
   constructor(
     public pyramidsService: PyramidsService,
@@ -24,7 +24,7 @@ export class PyramidsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pyramidsService.generate();
+    this.newGame();
   }
 
   draw(): void {
@@ -42,7 +42,17 @@ export class PyramidsComponent implements OnInit {
   }
 
   newGame(): void {
+    this.reset();
+    this.pyramidsService.reset();
+    this.pyramidsService.generate();
+  }
 
+  reset(): void {
+    const images: Element[] = Array.from(document.getElementsByClassName('playcard'));
+    images.forEach((el: Element) => {
+      el.setAttribute('style', 'visibility:visible;z-index:1');
+    });
+    this.showDeck = true;
   }
 
 }

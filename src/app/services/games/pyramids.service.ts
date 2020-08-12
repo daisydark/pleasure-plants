@@ -11,7 +11,10 @@ export class PyramidsService {
   activeCard: Card;
   lastDiscarded = 28;
   cardsLeft = 23;
+  cardsChecked = [];
+  discarded = 0;
   points = 0;
+  over = false;
 
   constructor(
     protected cardService: CardService
@@ -53,33 +56,60 @@ export class PyramidsService {
   }
 
   draw(): void {
+    if (this.cardsLeft === 0) {
+      this.checkMoves();
+      return;
+    }
+    this.discarded = 0;
     this.lastDiscarded++;
     this.deck[this.lastDiscarded].covered = false;
     this.activeCard = this.deck[this.lastDiscarded];
     this.cardsLeft--;
+    if (this.cardsLeft === 0) {
+      this.checkMoves();
+    }
   }
 
-  layDown(cardIndex, line): Promise<any> {
-    return new Promise((resolve, reject) => {
+  layDown(cardIndex): boolean {
       if (this.deck[cardIndex].covered === false && this.compare(this.deck[cardIndex])) {
+        const line = this.getLine(cardIndex);
         this.activeCard = this.deck[cardIndex];
         this.deck[cardIndex].played = true;
-        if (line === 1) {
-
+        this.discarded++;
+        this.points += line * this.discarded;
+        if (line === 6) {
+          this.endGame();
         } else {
-          this.checkLine(line - 1);
+          this.checkLine(line);
         }
-        resolve(1);
-      } else {
-        reject(1);
+        if (this.cardsLeft === 0) {
+          this.checkMoves();
+        }
+        return true;
       }
-    });
+      return false;
+  }
+
+  private getLine(cardIndex): number {
+    if (cardIndex > 20) {
+      return 1;
+    } else if (cardIndex > 14) {
+      return 2;
+    } else if (cardIndex > 9) {
+      return 3;
+    } else if (cardIndex > 5) {
+      return 4;
+    } else if (cardIndex > 2) {
+      return 5;
+    } else {
+      return 6;
+    }
   }
 
   private checkLine(line): void {
 
     switch (line) {
-      case 6:
+      case 1:
         if (this.deck[21].played && this.deck[22].played) {
           this.deck[15].covered = false;
         }
@@ -99,7 +129,7 @@ export class PyramidsService {
           this.deck[20].covered = false;
         }
         break;
-      case 5:
+      case 2:
         if (this.deck[15].played && this.deck[16].played) {
           this.deck[10].covered = false;
         }
@@ -116,7 +146,7 @@ export class PyramidsService {
           this.deck[14].covered = false;
         }
         break;
-      case 4:
+      case 3:
         if (this.deck[10].played && this.deck[11].played) {
           this.deck[6].covered = false;
         }
@@ -130,7 +160,7 @@ export class PyramidsService {
           this.deck[9].covered = false;
         }
         break;
-      case 3:
+      case 4:
         if (this.deck[6].played && this.deck[7].played) {
           this.deck[3].covered = false;
         }
@@ -141,7 +171,7 @@ export class PyramidsService {
           this.deck[5].covered = false;
         }
         break;
-      case 2:
+      case 5:
         if (this.deck[3].played && this.deck[4].played) {
           this.deck[1].covered = false;
         }
@@ -149,7 +179,7 @@ export class PyramidsService {
           this.deck[2].covered = false;
         }
         break;
-      case 1:
+      case 6:
         if (this.deck[1].played && this.deck[2].played) {
           this.deck[0].covered = false;
         }
@@ -165,5 +195,38 @@ export class PyramidsService {
       return true;
     }
     return false;
+  }
+
+  private checkMoves(): void {
+    let cardsRemaining = 0;
+
+    for (let i = 0; i < 28; i++) {
+      if (this.deck[i].covered === false &&
+        this.deck[i].played === false &&
+        this.compare(this.deck[i]) && this.cardsChecked.indexOf(i) < 0) {
+        cardsRemaining = 1;
+        this.cardsChecked.push(i);
+        break;
+      }
+    }
+
+    if ( ! cardsRemaining) {
+      this.endGame();
+    }
+  }
+
+  private endGame(): void {
+    this.over = true;
+  }
+
+  reset(): void {
+    this.cardService.reset();
+    this.deck = [];
+    this.lastDiscarded = 28;
+    this.cardsLeft = 23;
+    this.cardsChecked = [];
+    this.discarded = 0;
+    this.points = 0;
+    this.over = false;
   }
 }

@@ -8,8 +8,7 @@ import { PyramidsService } from '../../../../services/games/pyramids.service';
 })
 export class CardComponent implements OnInit {
 
-  @Input() cardNumber: number;
-  @Input() line: number;
+  @Input() cardIndex: number;
 
   constructor(
     public pyramidsService: PyramidsService
@@ -18,9 +17,9 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  layDown(cardIndex, line, $event): void {
-    this.pyramidsService.layDown(cardIndex, line).then((value) => {
+  layDown(cardIndex, $event): void {
+    if (this.pyramidsService.layDown(cardIndex)) {
       $event.target.setAttribute('style', 'visibility:hidden;z-index:0');
-    }).catch(() => false);
+    }
   }
 }

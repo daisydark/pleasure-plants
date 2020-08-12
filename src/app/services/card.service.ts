@@ -48,4 +48,16 @@ export class CardService {
     return '/assets/img/cards/back.png';
   }
 
+  reset(): void {
+    this.deck = [
+      '7C', '7D', '7H', '7S',
+      '8C', '8D', '8H', '8S',
+      '9C', '9D', '9H', '9S',
+      '10C', '10D', '10H', '10S',
+      'JC', 'JD', 'JH', 'JS',
+      'QC', 'QD', 'QH', 'QS',
+      'KC', 'KD', 'KH', 'KS',
+      'AC', 'AD', 'AH', 'AS'
+    ];
+  }
 }
