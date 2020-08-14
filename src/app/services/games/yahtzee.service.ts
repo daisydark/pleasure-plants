@@ -9,33 +9,22 @@ export class YahtzeeService {
 
   turn = 0;
 
-  ones = 0;
-  onesLocked = false;
-  twos = 0;
-  twosLocked = false;
-  threes = 0;
-  threesLocked = false;
-  fours = 0;
-  foursLocked = false;
-  fives = 0;
-  fivesLocked = false;
-  sixes = 0;
-  sixesLocked = false;
+  sheet = {
+    ones: {points: 0, locked: false},
+    twos: {points: 0, locked: false},
+    threes: {points: 0, locked: false},
+    fours: {points: 0, locked: false},
+    fives: {points: 0, locked: false},
+    sixes: {points: 0, locked: false},
 
-  threeOfAKind = 0;
-  threeOfAKindLocked = false;
-  fourOfAKind = 0;
-  fourOfAKindLocked = false;
-  fullHouse = 0;
-  fullHouseLocked = false;
-  smallStraight = 0;
-  smallStraightLocked = false;
-  largeStraight = 0;
-  largeStraightLocked = false;
-  yahtzee = 0;
-  yahtzeeLocked = false;
-  chance = 0;
-  chanceLocked = false;
+    threeOfAKind: {points: 0, locked: false},
+    fourOfAKind: {points: 0, locked: false},
+    fullHouse: {points: 0, locked: false},
+    smallStraight: {points: 0, locked: false},
+    largeStraight: {points: 0, locked: false},
+    yahtzee: {points: 0, locked: false},
+    chance: {points: 0, locked: false}
+  };
 
   bonus = 0;
   total = 0;
@@ -74,25 +63,28 @@ export class YahtzeeService {
       }
     }
 
-    if ( ! this.onesLocked) { this.ones = values[0]; }
-    if ( ! this.twosLocked) { this.twos = values[1] * 2; }
-    if ( ! this.threesLocked) { this.threes = values[2] * 3; }
-    if ( ! this.foursLocked) { this.fours = values[3] * 4; }
-    if ( ! this.fivesLocked) { this.fives = values[4] * 5; }
-    if ( ! this.sixesLocked) { this.sixes = values[5] * 6; }
+    let j = 1;
+    for (const [field, value] of Object.entries(this.sheet)) {
+      if (j <= 6 && ! value.locked) {
+        const index = j - 1;
+        this.sheet[field].points = values[index] * j;
+      }
+      j++;
+    }
 
     let twoNumbers = 0;
     let threeNumbers = 0;
+    let hasYahtzee = false;
 
     for (let i = 0; i < values.length; i++) {
       const value = values[i];
 
-      if ( ! this.threeOfAKindLocked && value >= 3) {
-        this.threeOfAKind = total;
+      if ( ! this.sheet.threeOfAKind.locked && value >= 3) {
+        this.sheet.threeOfAKind.points = total;
       }
 
-      if ( ! this.fourOfAKindLocked && value >= 4) {
-        this.fourOfAKind = total;
+      if ( ! this.sheet.fourOfAKind.locked && value >= 4) {
+        this.sheet.fourOfAKind.points = total;
       }
 
       if (value === 2 && i + 1 !== threeNumbers) {
@@ -103,180 +95,98 @@ export class YahtzeeService {
         threeNumbers = i + 1;
       }
 
-      if ( ! this.yahtzeeLocked && value === 5) {
-        this.yahtzee = 50;
+      if ( ! this.sheet.yahtzee.locked && value === 5) {
+        this.sheet.yahtzee.points = 50;
+        hasYahtzee = true;
+      }
+
+      if (value === 5) {
+        hasYahtzee = true;
       }
     }
 
-    if ( ! this.fullHouseLocked && twoNumbers > 0 && threeNumbers > 0) {
-      this.fullHouse = 25;
+    if ( ! this.sheet.fullHouse.locked && twoNumbers > 0 && threeNumbers > 0) {
+      this.sheet.fullHouse.points = 25;
     }
 
-    if ( ! this.smallStraightLocked &&
+    if ( ! this.sheet.smallStraight.locked &&
         ((values[0] > 0 && values[1] > 0 && values[2] > 0 && values[3] > 0) ||
           (values[1] > 0 && values[2] > 0 && values[3] > 0 && values[4] > 0) ||
           (values[2] > 0 && values[3] > 0 && values[4] > 0 && values[5] > 0))) {
-      this.smallStraight = 30;
+      this.sheet.smallStraight.points = 30;
     }
 
-    if ( ! this.largeStraightLocked &&
+    if ( ! this.sheet.largeStraight.locked &&
       ((values[0] === 1 && values[1] === 1 && values[2] === 1 && values[3] === 1 && values[4] === 1) ||
         (values[1] === 1 && values[2] === 1 && values[3] === 1 && values[4] === 1 && values[5] === 1))) {
-      this.largeStraight = 40;
+      this.sheet.largeStraight.points = 40;
     }
 
-    if ( ! this.chanceLocked) {
-      this.chance = total;
+    if ( ! this.sheet.chance.locked) {
+      this.sheet.chance.points = total;
+    }
+
+    if (this.sheet.yahtzee.locked && hasYahtzee) {
+      for (const [field, value] of Object.entries(this.sheet)) {
+          if ( ! value.locked) { this.sheet[field].points = 50; }
+      }
     }
 
     this.calculateTotal();
   }
 
-  protected calculateBonus(): void {
-    let bonus = 0;
+  calculateTotal(): void {
 
-    if (this.onesLocked) { bonus += this.ones; }
-    if (this.twosLocked) { bonus += this.twos; }
-    if (this.threesLocked) { bonus += this.threes; }
-    if (this.foursLocked) { bonus += this.fours; }
-    if (this.fivesLocked) { bonus += this.fives; }
-    if (this.sixesLocked) { bonus += this.sixes; }
+    let bonus = 0;
+    let total = 0;
+
+    let j = 6;
+    for (const [field, value] of Object.entries(this.sheet)) {
+      if (j <= 6) {
+        if (value.locked) { bonus += value.points; }
+      }
+      if (value.locked) { total += value.points; }
+      j++;
+    }
 
     if (bonus >= 63) {
       this.bonus = 35;
     }
-  }
 
-  calculateTotal(): void {
-    this.calculateBonus();
-
-    let total = 0;
-
-    if (this.onesLocked) { total += this.ones; }
-    if (this.twosLocked) { total += this.twos; }
-    if (this.threesLocked) { total += this.threes; }
-    if (this.foursLocked) { total += this.fours; }
-    if (this.fivesLocked) { total += this.fives; }
-    if (this.sixesLocked) { total += this.sixes; }
-
-    if (this.threeOfAKindLocked) { total += this.threeOfAKind; }
-    if (this.fourOfAKindLocked) { total += this.fourOfAKind; }
-    if (this.fullHouseLocked) { total += this.fullHouse; }
-    if (this.smallStraightLocked) { total += this.smallStraight; }
-    if (this.largeStraightLocked) { total += this.largeStraight; }
-    if (this.yahtzeeLocked) { total += this.yahtzee; }
-    if (this.chanceLocked) { total += this.chance; }
-
-    this.total = total;
+    this.total = total + this.bonus;
   }
 
   protected resetValues(): void {
-    if ( ! this.onesLocked) { this.ones = 0; }
-    if ( ! this.twosLocked) { this.twos = 0; }
-    if ( ! this.threesLocked) { this.threes = 0; }
-    if ( ! this.foursLocked) { this.fours = 0; }
-    if ( ! this.fivesLocked) { this.fives = 0; }
-    if ( ! this.sixesLocked) { this.sixes = 0; }
-
-    if ( ! this.threeOfAKindLocked) { this.threeOfAKind = 0; }
-    if ( ! this.fourOfAKindLocked) { this.fourOfAKind = 0; }
-    if ( ! this.fullHouseLocked) { this.fullHouse = 0; }
-    if ( ! this.smallStraightLocked) { this.smallStraight = 0; }
-    if ( ! this.largeStraightLocked) { this.largeStraight = 0; }
-    if ( ! this.yahtzeeLocked) { this.yahtzee = 0; }
-    if ( ! this.chanceLocked) { this.chance = 0; }
-  }
-
-  lock(dice): void {
-    switch (dice) {
-      case 'ones':
-        this.onesLocked = true;
-        break;
-      case 'twos':
-        this.twosLocked = true;
-        break;
-      case 'threes':
-        this.threesLocked = true;
-        break;
-      case 'fours':
-        this.foursLocked = true;
-        break;
-      case 'fives':
-        this.fivesLocked = true;
-        break;
-      case 'sixes':
-        this.sixesLocked = true;
-        break;
-      case 'threeOfAKind':
-        this.threeOfAKindLocked = true;
-        break;
-      case 'fourOfAKind':
-        this.fourOfAKindLocked = true;
-        break;
-      case 'fullHouse':
-        this.fullHouseLocked = true;
-        break;
-      case 'smallStraight':
-        this.smallStraightLocked = true;
-        break;
-      case 'largeStraight':
-        this.largeStraightLocked = true;
-        break;
-      case 'yahtzee':
-        this.yahtzeeLocked = true;
-        break;
-      case 'chance':
-        this.chanceLocked = true;
-        break;
+    for (const [field, value] of Object.entries(this.sheet)) {
+      if ( ! value.locked) { this.sheet[field].points = 0; }
     }
   }
 
+  lock(field): void {
+    this.sheet[field].locked = true;
+  }
+
   finished(): boolean {
-    return this.onesLocked &&
-      this.twosLocked &&
-      this.threesLocked &&
-      this.foursLocked &&
-      this.fivesLocked &&
-      this.sixesLocked &&
-      this.threeOfAKindLocked &&
-      this.fourOfAKindLocked &&
-      this.fullHouseLocked &&
-      this.smallStraight &&
-      this.largeStraightLocked &&
-      this.yahtzeeLocked &&
-      this.chanceLocked;
+    let lockCount = 0;
+
+    for (const [field, value] of Object.entries(this.sheet)) {
+      if (value.locked) {
+        lockCount++;
+      }
+    }
+
+    return lockCount === Object.keys(this.sheet).length;
   }
 
   reset(): void {
     this.turn = 0;
 
-    this.ones = 0;
-    this.onesLocked = false;
-    this.twos = 0;
-    this.twosLocked = false;
-    this.threes = 0;
-    this.threesLocked = false;
-    this.fours = 0;
-    this.foursLocked = false;
-    this.fives = 0;
-    this.fivesLocked = false;
-    this.sixes = 0;
-    this.sixesLocked = false;
-
-    this.threeOfAKind = 0;
-    this.threeOfAKindLocked = false;
-    this.fourOfAKind = 0;
-    this.fourOfAKindLocked = false;
-    this.fullHouse = 0;
-    this.fullHouseLocked = false;
-    this.smallStraight = 0;
-    this.smallStraightLocked = false;
-    this.largeStraight = 0;
-    this.largeStraightLocked = false;
-    this.yahtzee = 0;
-    this.yahtzeeLocked = false;
-    this.chance = 0;
-    this.chanceLocked = false;
+    for (const [field, value] of Object.entries(this.sheet)) {
+      if (value.locked) {
+        this.sheet[field].points = 0;
+        this.sheet[field].locked = false;
+      }
+    }
 
     this.bonus = 0;
     this.total = 0;
