@@ -23,6 +23,7 @@ import { PyramidsComponent } from './components/games/pyramids/pyramids.componen
 import { CardComponent } from './components/games/pyramids/card/card.component';
 import { SolitaireComponent } from './components/games/solitaire/solitaire.component';
 import { MenuComponent } from './components/layout/menu/menu.component';
+import { DragableComponent } from './components/games/solitaire/dragable/dragable.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MenuComponent } from './components/layout/menu/menu.component';
     PyramidsComponent,
     CardComponent,
     SolitaireComponent,
-    MenuComponent
+    MenuComponent,
+    DragableComponent
   ],
   imports: [
     BrowserModule,

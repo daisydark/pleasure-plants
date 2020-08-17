@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { CardService } from '../../../services/card.service';
+import { SolitaireService } from '../../../services/games/solitaire.service';
 
 @Component({
   selector: 'app-solitaire',
@@ -12,10 +13,12 @@ export class SolitaireComponent implements OnInit {
   faQuestionCircle = faQuestionCircle;
 
   constructor(
-    public cardService: CardService
+    public cardService: CardService,
+    public solitaireService: SolitaireService
   ) { }
 
   ngOnInit(): void {
+    this.solitaireService.generate();
   }
 
 }
