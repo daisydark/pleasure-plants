@@ -53,5 +53,10 @@
       "OverPoints": "Du hast ##POINTS## Punkte erreicht!",
       "OverNewGame": "Neues Spiel starten"
     }
+  ],
+  "Solitaire": [
+    {
+      "Title" : "Solitaire"
+    }
   ]
 }

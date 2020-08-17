@@ -1,214 +1,212 @@
-<div class="container">
-  <h1>{{"Yahtzee.0.Title" | translate}}
-    <fa-icon class="fa-pull-right fa-games-help" [icon]="faQuestionCircle"></fa-icon>
-  </h1>
-  <form [formGroup]="lockForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <table class="yahtzee">
-        <tr>
-          <td width="20%"></td>
-          <td class="text-center" *ngFor="let dice of dices;let i=index"><fa-icon [icon]="dice.faDice" (click)="checkLock(i)"></fa-icon></td>
-          <td width="20%"></td>
-        </tr>
-        <tr>
-          <td class="text-right">{{'Yahtzee.0.Lock' | translate}}</td>
-          <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock0" (change)="lock(0, $event)"></td>
-          <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock1" (change)="lock(1, $event)"></td>
-          <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock2" (change)="lock(2, $event)"></td>
-          <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock3" (change)="lock(3, $event)"></td>
-          <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock4" (change)="lock(4, $event)"></td>
-          <td><button class="btn btn-primary" type="submit" [disabled]="lockSubmit">{{'Yahtzee.0.Roll' | translate}}</button></td>
-        </tr>
-      </table>
-    </div>
-  </form>
-  <div class="alert text-center margin-top-md" *ngIf="showMessage">{{getRollsLeft()}}</div>
-  <div class="alert alert-success text-center margin-top-md" *ngIf="!showMessage">
-    <div><b>{{'Yahtzee.0.Over' | translate}}</b></div>
-    <div>{{'Yahtzee.0.OverPoints' | translate | replace: '##POINTS##' : getTotal()}}</div>
-    <div class="margin-top-sm"><button class="btn btn-secondary" (click)="newGame()">{{'Yahtzee.0.OverNewGame' | translate}}</button></div>
+<h2>{{"Yahtzee.0.Title" | translate}}
+  <fa-icon class="fa-pull-right fa-games-help" [icon]="faQuestionCircle"></fa-icon>
+</h2>
+<form [formGroup]="lockForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <table class="yahtzee">
+      <tr>
+        <td width="20%"></td>
+        <td class="text-center" *ngFor="let dice of dices;let i=index"><fa-icon [icon]="dice.faDice" (click)="checkLock(i)"></fa-icon></td>
+        <td width="20%"></td>
+      </tr>
+      <tr>
+        <td class="text-right">{{'Yahtzee.0.Lock' | translate}}</td>
+        <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock0" (change)="lock(0, $event)"></td>
+        <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock1" (change)="lock(1, $event)"></td>
+        <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock2" (change)="lock(2, $event)"></td>
+        <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock3" (change)="lock(3, $event)"></td>
+        <td class="text-center"><input class="toggle" type="checkbox" formControlName="lock4" (change)="lock(4, $event)"></td>
+        <td><button class="btn btn-primary" type="submit" [disabled]="lockSubmit">{{'Yahtzee.0.Roll' | translate}}</button></td>
+      </tr>
+    </table>
   </div>
-  <div class="row margin-top-lg">
-    <div class="col-md-6 col-xs-12">
-      <div class="row">
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.OnesTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.OnesTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.ones.locked;else zero">{{yahtzeeService.sheet.ones.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('ones', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.ones.locked">{{yahtzeeService.sheet.ones.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.TwosTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.TwosTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.twos.locked;else zero">{{yahtzeeService.sheet.twos.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('twos', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.twos.locked">{{yahtzeeService.sheet.twos.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.ThreesTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.ThreesTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.threes.locked;else zero">{{yahtzeeService.sheet.threes.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('threes', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.threes.locked">{{yahtzeeService.sheet.threes.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.FoursTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.FoursTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.fours.locked;else zero">{{yahtzeeService.sheet.fours.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('fours', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.fours.locked">{{yahtzeeService.sheet.fours.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.FivesTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.FivesTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.fives.locked;else zero">{{yahtzeeService.sheet.fives.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('fives', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.fives.locked">{{yahtzeeService.sheet.fives.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.SixesTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.SixesTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.sixes.locked;else zero">{{yahtzeeService.sheet.sixes.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('sixes', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.sixes.locked">{{yahtzeeService.sheet.sixes.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.BonusTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.BonusTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right">{{yahtzeeService.bonus}}</div>
-        </div>
-        <div class="col-2"></div>
-      </div>
-    </div>
-    <div class="col-md-6 col-xs-12">
-      <div class="row">
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.ThreeOfAKindTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.ThreeOfAKindTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.threeOfAKind.locked;else zero">{{yahtzeeService.sheet.threeOfAKind.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('threeOfAKind', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.threeOfAKind.locked">{{yahtzeeService.sheet.threeOfAKind.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.FourOfAKindTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.FourOfAKindTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.fourOfAKind.locked;else zero">{{yahtzeeService.sheet.fourOfAKind.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('fourOfAKind', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.fourOfAKind.locked">{{yahtzeeService.sheet.fourOfAKind.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.FullHouseTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.FullHouseTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.fullHouse.locked;else zero">{{yahtzeeService.sheet.fullHouse.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('fullHouse', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.fullHouse.locked">{{yahtzeeService.sheet.fullHouse.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.SmallStraightTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.SmallStraightTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.smallStraight.locked;else zero">{{yahtzeeService.sheet.smallStraight.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('smallStraight', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.smallStraight.locked">{{yahtzeeService.sheet.smallStraight.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.LargeStraightTitle' | translate}}</div>
-          <div>{{'Yahtzee.0..largeStraightTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.largeStraight.locked;else zero">{{yahtzeeService.sheet.largeStraight.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('largeStraight', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.largeStraight.locked">{{yahtzeeService.sheet.largeStraight.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.YahtzeeTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.YahtzeeTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.yahtzee;else zero">{{yahtzeeService.sheet.yahtzee.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('yahtzee', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.yahtzee.locked">{{yahtzeeService.sheet.yahtzee.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.ChanceTitle' | translate}}</div>
-          <div>{{'Yahtzee.0.ChanceTeaser' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.chance.locked;else zero">{{yahtzeeService.sheet.chance.points}}</span></div>
-        </div>
-        <div class="col-2">
-          <button class="btn btn-secondary fa-pull-right width-50"
-                  (click)="select('chance', $event)"
-                  [disabled]="buttonDisabled || yahtzeeService.sheet.chance.locked">{{yahtzeeService.sheet.chance.points}}</button>
-        </div>
-        <div class="col-8">
-          <div class="font-weight-bold">{{'Yahtzee.0.Total' | translate}}</div>
-        </div>
-        <div class="col-2">
-          <div class="font-weight-bold fa-pull-right">{{yahtzeeService.total}}</div>
-        </div>
-        <div class="col-2"></div>
-      </div>
-      </div>
-    </div>
-  <div class="clearfix margin-top-lg"></div>
+</form>
+<div class="alert text-center margin-top-md" *ngIf="showMessage">{{getRollsLeft()}}</div>
+<div class="alert alert-success text-center margin-top-md" *ngIf="!showMessage">
+  <div><b>{{'Yahtzee.0.Over' | translate}}</b></div>
+  <div>{{'Yahtzee.0.OverPoints' | translate | replace: '##POINTS##' : getTotal()}}</div>
+  <div class="margin-top-sm"><button class="btn btn-secondary" (click)="newGame()">{{'Yahtzee.0.OverNewGame' | translate}}</button></div>
 </div>
+<div class="row margin-top-lg">
+  <div class="col-md-6 col-xs-12">
+    <div class="row">
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.OnesTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.OnesTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.ones.locked;else zero">{{yahtzeeService.sheet.ones.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('ones', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.ones.locked">{{yahtzeeService.sheet.ones.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.TwosTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.TwosTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.twos.locked;else zero">{{yahtzeeService.sheet.twos.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('twos', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.twos.locked">{{yahtzeeService.sheet.twos.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.ThreesTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.ThreesTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.threes.locked;else zero">{{yahtzeeService.sheet.threes.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('threes', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.threes.locked">{{yahtzeeService.sheet.threes.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.FoursTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.FoursTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.fours.locked;else zero">{{yahtzeeService.sheet.fours.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('fours', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.fours.locked">{{yahtzeeService.sheet.fours.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.FivesTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.FivesTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.fives.locked;else zero">{{yahtzeeService.sheet.fives.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('fives', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.fives.locked">{{yahtzeeService.sheet.fives.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.SixesTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.SixesTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.sixes.locked;else zero">{{yahtzeeService.sheet.sixes.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('sixes', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.sixes.locked">{{yahtzeeService.sheet.sixes.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.BonusTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.BonusTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right">{{yahtzeeService.bonus}}</div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <div class="row">
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.ThreeOfAKindTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.ThreeOfAKindTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.threeOfAKind.locked;else zero">{{yahtzeeService.sheet.threeOfAKind.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('threeOfAKind', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.threeOfAKind.locked">{{yahtzeeService.sheet.threeOfAKind.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.FourOfAKindTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.FourOfAKindTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.fourOfAKind.locked;else zero">{{yahtzeeService.sheet.fourOfAKind.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('fourOfAKind', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.fourOfAKind.locked">{{yahtzeeService.sheet.fourOfAKind.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.FullHouseTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.FullHouseTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.fullHouse.locked;else zero">{{yahtzeeService.sheet.fullHouse.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('fullHouse', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.fullHouse.locked">{{yahtzeeService.sheet.fullHouse.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.SmallStraightTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.SmallStraightTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.smallStraight.locked;else zero">{{yahtzeeService.sheet.smallStraight.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('smallStraight', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.smallStraight.locked">{{yahtzeeService.sheet.smallStraight.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.LargeStraightTitle' | translate}}</div>
+        <div>{{'Yahtzee.0..largeStraightTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.largeStraight.locked;else zero">{{yahtzeeService.sheet.largeStraight.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('largeStraight', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.largeStraight.locked">{{yahtzeeService.sheet.largeStraight.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.YahtzeeTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.YahtzeeTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.yahtzee;else zero">{{yahtzeeService.sheet.yahtzee.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('yahtzee', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.yahtzee.locked">{{yahtzeeService.sheet.yahtzee.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.ChanceTitle' | translate}}</div>
+        <div>{{'Yahtzee.0.ChanceTeaser' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right"><span *ngIf="yahtzeeService.sheet.chance.locked;else zero">{{yahtzeeService.sheet.chance.points}}</span></div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary fa-pull-right width-50"
+                (click)="select('chance', $event)"
+                [disabled]="buttonDisabled || yahtzeeService.sheet.chance.locked">{{yahtzeeService.sheet.chance.points}}</button>
+      </div>
+      <div class="col-8">
+        <div class="font-weight-bold">{{'Yahtzee.0.Total' | translate}}</div>
+      </div>
+      <div class="col-2">
+        <div class="font-weight-bold fa-pull-right">{{yahtzeeService.total}}</div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    </div>
+  </div>
+<div class="clearfix margin-top-lg"></div>
 <ng-template #zero>0</ng-template>

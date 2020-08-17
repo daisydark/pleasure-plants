@@ -9,7 +9,7 @@
   border-radius: 100%;
   /* auto, since non-WebKit browsers doesn't support input styling */
   margin: auto 10px;
-  border: 1px solid #00ce00; /* Mobile Safari */
+  border: 1px solid #00ce00;
   -webkit-appearance: none;
   /*-moz-appearance: none;*/
   -ms-appearance: none;
@@ -58,6 +58,11 @@
   background: radial-gradient(ellipse at center,  #e5ffce 0%,#00ce00 40%,#006600 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ce00', endColorstr='#006600',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
+}
+
+.toggle:disabled {
+  cursor: auto;
+  border: 1px solid #ccc;
 }
 
 /* Extra small devices (phones, 600px and down) */

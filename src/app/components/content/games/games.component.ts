@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faDice, faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faDice, faCrown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-games',
@@ -9,6 +9,7 @@ import { faDice, faCrown } from '@fortawesome/free-solid-svg-icons';
 export class GamesComponent implements OnInit {
   faDice = faDice;
   faCrown = faCrown;
+  faCaretUp = faCaretUp;
 
   constructor() { }
 

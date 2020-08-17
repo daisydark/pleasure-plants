@@ -3,4 +3,4 @@
      (click)="layDown(cardIndex, $event)"
      src="{{this.pyramidsService.deck[cardIndex].getImgUrl()}}">
 
-<ng-template #back><img src="/assets/img/cards/back.png"></ng-template>
+<ng-template #back><img src="{{cardService.getBackImgUrl()}}"></ng-template>

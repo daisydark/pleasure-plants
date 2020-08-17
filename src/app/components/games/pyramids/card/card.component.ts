@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PyramidsService } from '../../../../services/games/pyramids.service';
+import { CardService } from '../../../../services/card.service';
 
 @Component({
   selector: 'app-card',
@@ -11,7 +12,8 @@ export class CardComponent implements OnInit {
   @Input() cardIndex: number;
 
   constructor(
-    public pyramidsService: PyramidsService
+    public pyramidsService: PyramidsService,
+    public cardService: CardService
   ) { }
 
   ngOnInit(): void {
