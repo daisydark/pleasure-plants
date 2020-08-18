@@ -3,11 +3,11 @@ import { SolitaireService } from '../../../../services/games/solitaire.service';
 import { CardService } from '../../../../services/card.service';
 
 @Component({
-  selector: 'app-dragable',
-  templateUrl: './dragable.component.html',
-  styleUrls: ['./dragable.component.scss']
+  selector: 'app-draggable',
+  templateUrl: './draggable.component.html',
+  styleUrls: ['./draggable.component.scss']
 })
-export class DragableComponent implements OnInit {
+export class DraggableComponent implements OnInit {
 
   @Input() cardIndex: number;
 

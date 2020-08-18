@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LayoutModule } from '@angular/cdk/layout';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +24,7 @@ import { PyramidsComponent } from './components/games/pyramids/pyramids.componen
 import { CardComponent } from './components/games/pyramids/card/card.component';
 import { SolitaireComponent } from './components/games/solitaire/solitaire.component';
 import { MenuComponent } from './components/layout/menu/menu.component';
-import { DragableComponent } from './components/games/solitaire/dragable/dragable.component';
+import { DraggableComponent } from './components/games/solitaire/draggable/draggable.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { DragableComponent } from './components/games/solitaire/dragable/dragabl
     CardComponent,
     SolitaireComponent,
     MenuComponent,
-    DragableComponent
+    DraggableComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +56,8 @@ import { DragableComponent } from './components/games/solitaire/dragable/dragabl
     }),
     FontAwesomeModule,
     ReactiveFormsModule,
-    LayoutModule
+    LayoutModule,
+    DragDropModule
   ],
   providers: [ CookieService ],
   bootstrap: [AppComponent]
