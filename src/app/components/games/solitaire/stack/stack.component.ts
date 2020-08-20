@@ -26,7 +26,41 @@ export class StackComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Card[]>): void {
+    if (event.previousContainer !== event.container) {
 
+      const currentIndex = event.previousContainer.data.length - 1;
+      const targetIndex = event.container.data.length;
+      const card = event.previousContainer.data[currentIndex];
+
+      if (currentIndex) {
+        const prevCard = event.previousContainer.data[currentIndex - 1];
+        prevCard.cssClass = 'pointer';
+      }
+
+      if (targetIndex > 0) {
+        const prevCard = event.container.data[targetIndex - 1];
+        prevCard.cssClass = '';
+      }
+
+      event.previousContainer.data.pop();
+      event.container.data.push(card);
+      this.createMultipleStack(event.container);
+    }
   }
 
+  createMultipleStack(container): void  {
+    const firstCard = null;
+
+    const elements: Element[] = Array.from(container.element.nativeElement.childNodes);
+    elements.forEach((el: Element) => {
+
+      console.log(el);
+
+      if (el.firstChild) {
+        console.log(el.firstChild);
+      }
+    });
+
+    console.log(container);
+  }
 }

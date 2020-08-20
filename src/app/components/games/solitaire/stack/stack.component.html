@@ -1,12 +1,13 @@
-<div class="emptyCard" cdkDropList
+<div class="stackDrop" cdkDropList
      [cdkDropListData]="stack"
      cdkDropListSortingDisabled
      (cdkDropListDropped)="drop($event)">
-        <div *ngFor="let card of stack; index as i" class="l{{i}}">
-          <img cdkDrag
-               [cdkDragDisabled]="card.covered"
-               [class]="card.cssClass"
-               (click)="turn(card)"
-               src="{{card.getImgUrl()}}">
-        </div>
+  <div class="emptyCard"></div>
+  <div *ngFor="let card of stack; index as i; let last = last" class="l{{i}}">
+    <img cdkDrag
+         [cdkDragDisabled]=" ! last || card.covered"
+         [class]="card.cssClass"
+         (click)="turn(card)"
+         src="{{card.getImgUrl()}}">
+  </div>
 </div>

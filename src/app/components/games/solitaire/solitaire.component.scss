@@ -7,13 +7,24 @@
   flex-basis: 0;
   flex-grow: 1;
   text-align: center;
+  position: relative;
+}
+
+.stackDrop {
+  position: relative;
+  height:900px;
 }
 
 .emptyCard {
   background-color:#fff;
   border: 1px solid #eee;
   border-radius: 5px;
-  margin:0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
 }
 
 .empty {
@@ -22,8 +33,7 @@
 }
 
 .cdk-drag-placeholder {
-  opacity: 0;
-  height:0;
+  display: none;
 }
 
 /* Extra small devices (phones, 600px and down) */
