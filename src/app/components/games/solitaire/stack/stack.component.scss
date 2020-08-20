@@ -1,0 +1,49 @@
+@import "../solitaire.component.scss";
+
+.l0, .l1, .l2, .l3, .l4, .l5, .l6 {
+  position: relative;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .l1 { bottom: 44px; }
+  .l2 { bottom: 88px; }
+  .l3 { bottom: 132px; }
+  .l4 { bottom: 176px; }
+  .l5 { bottom: 220px; }
+  .l6 { bottom: 264px; }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .l1 { bottom: 67px; }
+  .l2 { bottom: 134px; }
+  .l3 { bottom: 201px; }
+  .l4 { bottom: 268px; }
+  .l5 { bottom: 335px; }
+  .l6 { bottom: 402px; }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .l1 { bottom: 103px; }
+  .l2 { bottom: 206px; }
+  .l3 { bottom: 309px; }
+  .l4 { bottom: 412px; }
+  .l5 { bottom: 515px; }
+  .l6 { bottom: 618px; }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .l1 { bottom: 115px; }
+  .l2 { bottom: 233px; }
+  .l3 { bottom: 351px; }
+  .l4 { bottom: 469px; }
+  .l5 { bottom: 587px; }
+  .l6 { bottom: 705px; }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

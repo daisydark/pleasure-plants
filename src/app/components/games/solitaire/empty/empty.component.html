@@ -1,0 +1,9 @@
+<div class="emptyCard"
+     cdkDropList
+     [cdkDropListData]="stack"
+     cdkDropListSortingDisabled
+     (cdkDropListDropped)="drop($event)">
+  <div *ngFor="let card of stack" class="empty">
+    <img src="{{card.getImgUrl()}}">
+  </div>
+</div>

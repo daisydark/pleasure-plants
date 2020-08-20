@@ -1,5 +1,0 @@
-<img *ngIf="this.solitaireService.deck[cardIndex].covered == false; else back"
-     class="pointer"
-     src="{{this.solitaireService.deck[cardIndex].getImgUrl()}}">
-
-<ng-template #back><img src="{{cardService.getBackImgUrl()}}"></ng-template>

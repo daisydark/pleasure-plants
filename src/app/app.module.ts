@@ -24,7 +24,8 @@ import { PyramidsComponent } from './components/games/pyramids/pyramids.componen
 import { CardComponent } from './components/games/pyramids/card/card.component';
 import { SolitaireComponent } from './components/games/solitaire/solitaire.component';
 import { MenuComponent } from './components/layout/menu/menu.component';
-import { DraggableComponent } from './components/games/solitaire/draggable/draggable.component';
+import { StackComponent } from './components/games/solitaire/stack/stack.component';
+import { EmptyComponent } from './components/games/solitaire/empty/empty.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { DraggableComponent } from './components/games/solitaire/draggable/dragg
     CardComponent,
     SolitaireComponent,
     MenuComponent,
-    DraggableComponent
+    StackComponent,
+    EmptyComponent
   ],
   imports: [
     BrowserModule,

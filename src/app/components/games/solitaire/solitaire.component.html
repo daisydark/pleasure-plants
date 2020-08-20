@@ -2,69 +2,28 @@
   <fa-icon class="fa-pull-right fa-games-help" [icon]="faQuestionCircle"></fa-icon>
 </h2>
 <div>
-  <table class="pcard">
-    <tr>
-      <td><img src="{{cardService.getBackImgUrl()}}"></td>
-      <td>
+  <div cdkDropListGroup>
+    <div class="game">
+      <div class="stack">
+        <img src="{{cardService.getBackImgUrl()}}">
+      </div>
+      <div class="stack">
         <div class="emptyCard"></div>
-      </td>
-      <td></td>
-      <td>
-        <div class="emptyCard"></div>
-      </td>
-      <td>
-        <div class="emptyCard"></div>
-      </td>
-      <td>
-        <div class="emptyCard"></div>
-      </td>
-      <td>
-        <div class="emptyCard"></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <app-draggable cardIndex="0"></app-draggable>
-      </td>
-      <td>
-        <app-draggable cardIndex="1"></app-draggable>
-        <app-draggable cardIndex="2" class="l2"></app-draggable>
-      </td>
-      <td>
-        <app-draggable cardIndex="3"></app-draggable>
-        <app-draggable cardIndex="4" class="l2"></app-draggable>
-        <app-draggable cardIndex="5" class="l3"></app-draggable>
-      </td>
-      <td>
-        <app-draggable cardIndex="6"></app-draggable>
-        <app-draggable cardIndex="7" class="l2"></app-draggable>
-        <app-draggable cardIndex="8" class="l3"></app-draggable>
-        <app-draggable cardIndex="9" class="l4"></app-draggable>
-      </td>
-      <td>
-        <app-draggable cardIndex="10"></app-draggable>
-        <app-draggable cardIndex="11" class="l2"></app-draggable>
-        <app-draggable cardIndex="12" class="l3"></app-draggable>
-        <app-draggable cardIndex="13" class="l4"></app-draggable>
-        <app-draggable cardIndex="14" class="l5"></app-draggable>
-      </td>
-      <td>
-        <app-draggable cardIndex="15"></app-draggable>
-        <app-draggable cardIndex="16" class="l2"></app-draggable>
-        <app-draggable cardIndex="17" class="l3"></app-draggable>
-        <app-draggable cardIndex="18" class="l4"></app-draggable>
-        <app-draggable cardIndex="19" class="l5"></app-draggable>
-        <app-draggable cardIndex="20" class="l6"></app-draggable>
-      </td>
-      <td>
-        <app-draggable cardIndex="21"></app-draggable>
-        <app-draggable cardIndex="22" class="l2"></app-draggable>
-        <app-draggable cardIndex="23" class="l3"></app-draggable>
-        <app-draggable cardIndex="24" class="l4"></app-draggable>
-        <app-draggable cardIndex="25" class="l5"></app-draggable>
-        <app-draggable cardIndex="26" class="l6"></app-draggable>
-        <app-draggable cardIndex="27" class="l7"></app-draggable>
-      </td>
-    </tr>
-  </table>
+      </div>
+      <div class="stack"></div>
+      <div class="stack"><app-empty [stack]="solitaireService.empty1"></app-empty></div>
+      <div class="stack"><app-empty [stack]="solitaireService.empty2"></app-empty></div>
+      <div class="stack"><app-empty [stack]="solitaireService.empty3"></app-empty></div>
+      <div class="stack"><app-empty [stack]="solitaireService.empty4"></app-empty></div>
+    </div>
+    <div class="game">
+      <div class="stack"><app-stack [stack]="solitaireService.stack1"></app-stack></div>
+      <div class="stack"><app-stack [stack]="solitaireService.stack2"></app-stack></div>
+      <div class="stack"><app-stack [stack]="solitaireService.stack3"></app-stack></div>
+      <div class="stack"><app-stack [stack]="solitaireService.stack4"></app-stack></div>
+      <div class="stack"><app-stack [stack]="solitaireService.stack5"></app-stack></div>
+      <div class="stack"><app-stack [stack]="solitaireService.stack6"></app-stack></div>
+      <div class="stack"><app-stack [stack]="solitaireService.stack7"></app-stack></div>
+    </div>
+  </div>
 </div>

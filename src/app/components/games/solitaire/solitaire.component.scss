@@ -1,12 +1,14 @@
-table {
-  width: 100%;
+.game {
+  display: flex;
+  margin-top:20px;
 }
-td {
+
+.stack {
+  flex-basis: 0;
+  flex-grow: 1;
   text-align: center;
-  padding-top: 20px;
-  vertical-align: top;
-  width: 14.28571428571429%;
 }
+
 .emptyCard {
   background-color:#fff;
   border: 1px solid #eee;
@@ -14,72 +16,48 @@ td {
   margin:0 auto;
 }
 
-.l2, .l3, .l4, .l5, .l6, .l7 {
-  position: relative;
+.empty {
+  position: absolute;
+  z-index: 0;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+  height:0;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .pcard img, .playcards img, .emptyCard {
+  img, .emptyCard {
     width:42px;
     height: 64px;
   }
-
-  .l2 { bottom: 44px; }
-  .l3 { bottom: 88px; }
-  .l4 { bottom: 132px; }
-  .l5 { bottom: 176px; }
-  .l6 { bottom: 220px; }
-  .l7 { bottom: 264px; }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .pcard img, .playcards img, .emptyCard {
+  img, .emptyCard {
     width:60px;
     height: 92px;
   }
-
-  .l2 { bottom: 67px; }
-  .l3 { bottom: 134px; }
-  .l4 { bottom: 201px; }
-  .l5 { bottom: 268px; }
-  .l6 { bottom: 335px; }
-  .l7 { bottom: 402px; }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .pcard img, .playcards img, .emptyCard {
+  img, .emptyCard {
     width: 80px;
     height: 123px;
   }
-
-  .l2 { bottom: 103px; }
-  .l3 { bottom: 206px; }
-  .l4 { bottom: 309px; }
-  .l5 { bottom: 412px; }
-  .l6 { bottom: 515px; }
-  .l7 { bottom: 618px; }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .pcard img, .playcards img, .emptyCard {
+  img, .emptyCard {
     width:90px;
     height:138px;
   }
-
-  .l2 { bottom: 115px; }
-  .l3 { bottom: 233px; }
-  .l4 { bottom: 351px; }
-  .l5 { bottom: 469px; }
-  .l6 { bottom: 587px; }
-  .l7 { bottom: 705px; }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
-
 }
