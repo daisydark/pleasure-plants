@@ -6,7 +6,7 @@
     <a routerLink="/my-breeding"><fa-icon [icon]="faLeaf"></fa-icon></a>
     <a routerLink="/breeding"><fa-icon [icon]="faDna"></fa-icon></a>
     <a routerLink="/games"><fa-icon [icon]="faDice"></fa-icon></a>
-    <a routerLink="/profile"><fa-icon [icon]="faUserCircle"></fa-icon></a>
+    <a routerLink="/account/settings"><fa-icon [icon]="faUserCircle"></fa-icon></a>
     <span class="form-inline">
       <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
         <option *ngFor="let language of translate.getLangs()" [value]="language"

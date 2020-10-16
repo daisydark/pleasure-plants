@@ -182,10 +182,8 @@ export class YahtzeeService {
     this.turn = 0;
 
     for (const [field, value] of Object.entries(this.sheet)) {
-      if (value.locked) {
-        this.sheet[field].points = 0;
-        this.sheet[field].locked = false;
-      }
+      this.sheet[field].points = 0;
+      this.sheet[field].locked = false;
     }
 
     this.bonus = 0;

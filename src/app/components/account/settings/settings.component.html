@@ -1,0 +1,17 @@
+<h2>Settings</h2>
+<p>&nbsp;</p>
+<div class="col-6"></div>
+<div class="col-6">
+
+    <div class="form-group">
+      <label for="filepath">Upload path</label>
+      <input id="filepath" class="form-control" type="text" name="filepath" value="/var/www/tests/_output">
+    </div>
+
+    <div class="form-group">
+      <label for="logo">Logo</label>
+      <input id="logo" class="form-control" type="file" name="logo" (change)="handleFileInput($event.target.files)">
+    </div>
+
+  <button type="submit" class="btn btn-primary" (click)="uploadFileToActivity()">Upload</button>
+</div>

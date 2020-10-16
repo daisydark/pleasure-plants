@@ -26,6 +26,7 @@ import { SolitaireComponent } from './components/games/solitaire/solitaire.compo
 import { MenuComponent } from './components/layout/menu/menu.component';
 import { StackComponent } from './components/games/solitaire/stack/stack.component';
 import { EmptyComponent } from './components/games/solitaire/empty/empty.component';
+import { SettingsComponent } from './components/account/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EmptyComponent } from './components/games/solitaire/empty/empty.compone
     SolitaireComponent,
     MenuComponent,
     StackComponent,
-    EmptyComponent
+    EmptyComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
